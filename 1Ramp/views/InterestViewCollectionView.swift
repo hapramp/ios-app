@@ -23,9 +23,10 @@ class InterestViewCollectionView: UIView {
     
     private func arrangeViews(){
         var lastView: UIView = UIView()
-        var originalPadding = Dimensions.InterestView.padding
-        var currentLeftPadding = originalPadding
-        var currentTopPadding = originalPadding
+        let originalHorizontalPadding = Dimensions.InterestView.horizontalPadding
+        let originalVerticalPadding = Dimensions.InterestView.verticalPadding
+        var currentLeftPadding = originalHorizontalPadding
+        var currentTopPadding = originalVerticalPadding
         var tAnchor = self.topAnchor
         var lAnchor = self.leftAnchor
         
@@ -36,10 +37,10 @@ class InterestViewCollectionView: UIView {
                     let col = Int(i % Int(Dimensions.InterestView.columns))
                     if col==0 {
                         lAnchor = self.leftAnchor
-                        currentLeftPadding = originalPadding
+                        currentLeftPadding = originalHorizontalPadding
                     }else{
                         lAnchor = lastView.rightAnchor
-                        currentLeftPadding = 2 * originalPadding
+                        currentLeftPadding = 2 * originalHorizontalPadding
                     }
                     
                     view.isUserInteractionEnabled = true
@@ -52,7 +53,7 @@ class InterestViewCollectionView: UIView {
                     //detect wrap
                     if (i+1) % Int(Dimensions.InterestView.columns) == 0{
                         tAnchor = lastView.bottomAnchor
-                        currentTopPadding = 2*originalPadding
+                        currentTopPadding = 2 * originalVerticalPadding
                     }
                     lastView = view
                 }

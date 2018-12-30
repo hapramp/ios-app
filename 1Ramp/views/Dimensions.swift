@@ -12,18 +12,19 @@ struct Dimensions {
     
     class InterestView {
         static let columns: CGFloat = 3
-        static let padding: CGFloat = 4
+        static let horizontalPadding: CGFloat = 4
+        static let verticalPadding: CGFloat = 8
         static let dimension: CGFloat = 108
         static let iconDimension: CGFloat = 32
         
         static var interestContainerViewWidth: CGFloat = {
-            return columns * (padding + dimension + padding)
+            return columns * (horizontalPadding + dimension + horizontalPadding)
         }()
         
         static func interestContainerHeightFor(items: Int) -> CGFloat{
             let extraRow = (items % Int(columns) == 0) ? 0 : 1
             let rows = (items/Int(columns)) + extraRow
-            return CGFloat(rows) * (padding + dimension + padding)
+            return CGFloat(rows) * (verticalPadding + dimension + verticalPadding)
         }
     }
 }
