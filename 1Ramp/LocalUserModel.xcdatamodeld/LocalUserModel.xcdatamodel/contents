@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18B75" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="UserEntity" representedClassName="UserEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="access_token" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="all_interests" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="is_logged_in" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="user_json" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_token" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="UserEntity" positionX="-63" positionY="-18" width="128" height="135"/>
+    </elements>
+</model>

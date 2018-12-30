@@ -7,7 +7,20 @@
 		<key>1Ramp.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>4</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>BC12A67321D22CA600A33112</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BC12A68721D22CA800A33112</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
