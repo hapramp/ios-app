@@ -66,10 +66,11 @@ extension InterestSelectionViewController{
     func setupInterestGrid(){
         view.addSubview(containerView)
         let views: [UIView] = getListOfViews()
-        let cvHeight = Dimensions.InterestView.interestContainerHeightFor(items: views.count)
-        let cvWidth = Dimensions.InterestView.interestContainerViewWidth
+        let cvHeight = Dimensions.InterestViewInSelectionController.interestContainerHeightFor(items: views.count)
+        let cvWidth = Dimensions.InterestViewInSelectionController.interestContainerViewWidth
         
-        containerView.addView(views: views, dimension: Dimensions.InterestView.dimension)
+        containerView.addView(views: views, itemHeight: Dimensions.InterestViewInSelectionController.height, itemWidth: Dimensions.InterestViewInSelectionController.width)
+        
         containerView.topAnchor.constraint(equalTo: navBar.bottomAnchor, constant: 24).isActive = true
         containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         containerView.heightAnchor.constraint(equalToConstant: cvHeight).isActive = true
@@ -91,13 +92,27 @@ extension InterestSelectionViewController{
             for interest in interests{
                 let testView = InterestView()
                 testView.translatesAutoresizingMaskIntoConstraints = false
-                testView.interestColor = AssetsUtil.interstColorFor(tag: interest.tag)
-                testView.interestIconName = AssetsUtil.interstImageNameFor(tag: interest.tag)
-                testView.interestTag = interest.tag
-                testView.interestName = interest.name
-                testView.interestId = interest.id
+                
+                let info = InterestView.Info.init(
+                    interestColor: AssetsUtil.interstColorFor(tag: interest.tag),
+                    interestIconName: AssetsUtil.interstImageNameFor(tag: interest.tag),
+                    interestTag: interest.tag,
+                    interestName: interest.name,
+                    interestId: interest.id,
+                    selected: isInterestPreSelected(interestId: interest.id
+                ))
+                
+                let config = InterestView.DimensionConfig.init(
+                    width: Dimensions.InterestViewInSelectionController.width,
+                    height: Dimensions.InterestViewInSelectionController.height,
+                    circularViewPadding: Dimensions.InterestViewInSelectionController.circularViewPadding,
+                    imageIconDimension: Dimensions.InterestViewInSelectionController.imageIconDimension,
+                    textSize: Dimensions.InterestViewInSelectionController.textSize,
+                    textHeight: Dimensions.InterestViewInSelectionController.textHeight)
+                
+                testView.setConfig(config: config)
+                testView.info = info
                 testView.delegate = self
-                testView.selected = isInterestPreSelected(interestId: interest.id)
                 views.append(testView)
             }
         }

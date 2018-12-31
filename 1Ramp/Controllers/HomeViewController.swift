@@ -40,11 +40,11 @@ class HomeViewController: UIViewController {
         button.addTarget(self, action: #selector(handleEditInterests), for: .touchUpInside)
         return button
     }()
-    
+ 
     override func viewDidLoad() {
         view.backgroundColor = UIColor.white
         view.addSubview(logoutBtn)
-         view.addSubview(editInterestBtn)
+        view.addSubview(editInterestBtn)
         view.addSubview(panel)
         view.addSubview(interestsPanel)
         

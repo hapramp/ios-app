@@ -11,32 +11,27 @@ class InterestView: UIView{
     
     var interestTag: String?
     var delegate: InterestIconDelegate?
+    var selected: Bool = false
     
-    var selected: Bool = false{
+    var dimensionConfig: DimensionConfig?{
         didSet{
-            setSelected(selected: selected)
+            interestTitle.font = UIFont.systemFont(ofSize: (dimensionConfig?.textSize)!)
         }
     }
     
-    var interestId: Int = 0
-    
-    var interestName: String = ""{
+    var info: Info?{
         didSet{
-            interestTitle.text = interestName
+            setSelected(selected: (info?.selected)!)
+            interestTitle.text = info?.interestName
+            self.setImageIcon(name: (info?.interestIconName)!)
         }
     }
-    
-    var interestColor: UIColor = UIColor.black{
-        didSet{
-            setSelected(selected: selected)
-        }
-    }
-    
-    var interestIconName: String = AssetsUtil.Art{
-        didSet{
-            self.setImageIcon(name: interestIconName)
-        }
-    }
+   
+    let containerView: UIView = {
+        let cv = UIView()
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        return cv
+    }()
     
     let interestIcon: UIImageView = {
         let imageView = UIImageView()
@@ -61,6 +56,10 @@ class InterestView: UIView{
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+    }
+    
+    func setConfig(config: DimensionConfig){
+        self.dimensionConfig = config
         setupViews()
     }
     
@@ -69,46 +68,58 @@ class InterestView: UIView{
     }
     
     func setupViews(){
-        addSubview(interestBackground)
-        addSubview(interestIcon)
-        addSubview(interestTitle)
-        
-        interestBackground.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16).isActive = true
-        interestBackground.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16).isActive = true
-        interestBackground.topAnchor.constraint(equalTo: self.topAnchor, constant: 8).isActive = true
-        interestBackground.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -24).isActive = true
-        interestTitle.topAnchor.constraint(equalTo: interestBackground.bottomAnchor, constant: 0).isActive = true
-        interestTitle.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
-        interestTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        
-        
-        interestIcon.centerXAnchor.constraint(equalTo: interestBackground.centerXAnchor).isActive = true
-        interestIcon.centerYAnchor.constraint(equalTo: interestBackground.centerYAnchor).isActive = true
-        
-        interestIcon.heightAnchor.constraint(equalToConstant: Dimensions.InterestView.iconDimension).isActive = true
-        interestIcon.widthAnchor.constraint(equalToConstant: Dimensions.InterestView.iconDimension).isActive = true
-        
-        interestBackground.layer.cornerRadius = (Dimensions.InterestView.dimension - 32) / 2
-        interestBackground.layer.masksToBounds = true
-        interestBackground.layer.borderWidth = 1
-        //layer.borderColor = UIColor.black.cgColor
-        setSelected(selected: selected)
-        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleInterestIconTapped)))
+        addSubview(containerView)
+        if let dimension = dimensionConfig{
+            //Container view
+            containerView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0).isActive = true
+            containerView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
+            containerView.heightAnchor.constraint(equalToConstant: dimension.height).isActive = true
+            containerView.widthAnchor.constraint(equalToConstant: dimension.width).isActive = true
+            
+            //Background Colored region
+            containerView.addSubview(interestBackground)
+            let circularRegionDimension = dimension.width - 2 * dimension.circularViewPadding
+            
+            interestBackground.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: dimension.circularViewPadding).isActive = true
+            interestBackground.topAnchor.constraint(equalTo: containerView.topAnchor, constant: dimension.circularViewPadding).isActive = true
+            
+            interestBackground.heightAnchor.constraint(equalToConstant: circularRegionDimension).isActive = true
+            interestBackground.widthAnchor.constraint(equalToConstant: circularRegionDimension).isActive = true
+            
+            //Interest Icon
+            interestBackground.addSubview(interestIcon)
+            interestIcon.centerXAnchor.constraint(equalTo: interestBackground.centerXAnchor).isActive = true
+            interestIcon.centerYAnchor.constraint(equalTo: interestBackground.centerYAnchor).isActive = true
+            interestIcon.heightAnchor.constraint(equalToConstant: dimension.imageIconDimension).isActive = true
+            interestIcon.widthAnchor.constraint(equalToConstant: dimension.imageIconDimension).isActive = true
+            
+            //Interest title
+            containerView.addSubview(interestTitle)
+            
+            interestTitle.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
+            interestTitle.topAnchor.constraint(equalTo: interestBackground.bottomAnchor, constant: dimension.circularViewPadding).isActive = true
+            
+            interestBackground.layer.cornerRadius = circularRegionDimension/2
+            interestBackground.layer.masksToBounds = true
+            interestBackground.layer.borderWidth = 1
+            self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleInterestIconTapped)))
+        }
     }
     
     @objc func handleInterestIconTapped(){
-        selected = !selected
+        self.setSelected(selected: !selected)
         if delegate != nil{
-            delegate?.onInterestTapped(selected: selected, interestId: interestId)
+            delegate?.onInterestTapped(selected: selected, interestId: (info?.interestId)!)
         }
     }
     
     private func setSelected(selected: Bool){
+        self.selected = selected
         if selected{
             //remove border
             interestBackground.layer.borderColor = UIColor.clear.cgColor
             //set background color
-            interestBackground.layer.backgroundColor = interestColor.cgColor
+            interestBackground.layer.backgroundColor = info?.interestColor.cgColor
         }else{
             //add border
             interestBackground.layer.borderColor = UIColor.black.cgColor
@@ -119,5 +130,23 @@ class InterestView: UIView{
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    public struct DimensionConfig {
+        var width: CGFloat
+        var height: CGFloat
+        var circularViewPadding: CGFloat
+        var imageIconDimension: CGFloat
+        var textSize: CGFloat
+        var textHeight: CGFloat
+    }
+    
+    struct Info {
+        var interestColor: UIColor
+        var interestIconName: String
+        var interestTag: String
+        var interestName: String
+        var interestId: Int
+        var selected: Bool
     }
 }

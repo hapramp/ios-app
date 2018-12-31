@@ -9,22 +9,24 @@
 import UIKit
 class InterestViewCollectionView: UIView {
     var views: [UIView]?
-    var dimension: CGFloat?
+    var itemHeight: CGFloat?
+    var itemWidth: CGFloat?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-    func addView(views: [UIView], dimension: CGFloat){
+    func addView(views: [UIView], itemHeight: CGFloat, itemWidth: CGFloat){
         self.views = views
-        self.dimension = dimension
+        self.itemWidth = itemWidth
+        self.itemHeight = itemHeight
         self.arrangeViews()
     }
     
     private func arrangeViews(){
         var lastView: UIView = UIView()
-        let originalHorizontalPadding = Dimensions.InterestView.horizontalPadding
-        let originalVerticalPadding = Dimensions.InterestView.verticalPadding
+        let originalHorizontalPadding = Dimensions.InterestViewInSelectionController.horizontalSpacing
+        let originalVerticalPadding = Dimensions.InterestViewInSelectionController.verticalSpacing
         var currentLeftPadding = originalHorizontalPadding
         var currentTopPadding = originalVerticalPadding
         var tAnchor = self.topAnchor
@@ -34,7 +36,7 @@ class InterestViewCollectionView: UIView {
             for i in 0..<itemsCount{
                 
                 if let view = views?[i] {
-                    let col = Int(i % Int(Dimensions.InterestView.columns))
+                    let col = Int(i % Int(Dimensions.InterestViewInSelectionController.columns))
                     if col==0 {
                         lAnchor = self.leftAnchor
                         currentLeftPadding = originalHorizontalPadding
@@ -47,11 +49,11 @@ class InterestViewCollectionView: UIView {
                     self.addSubview(view)
                     view.leftAnchor.constraint(equalTo: lAnchor, constant: currentLeftPadding).isActive = true
                     view.topAnchor.constraint(equalTo: tAnchor, constant: currentTopPadding).isActive = true
-                    view.heightAnchor.constraint(equalToConstant: dimension!).isActive = true
-                    view.widthAnchor.constraint(equalToConstant: dimension!).isActive = true
+                    view.heightAnchor.constraint(equalToConstant: itemHeight!).isActive = true
+                    view.widthAnchor.constraint(equalToConstant: itemWidth!).isActive = true
                     
                     //detect wrap
-                    if (i+1) % Int(Dimensions.InterestView.columns) == 0{
+                    if (i+1) % Int(Dimensions.InterestViewInSelectionController.columns) == 0{
                         tAnchor = lastView.bottomAnchor
                         currentTopPadding = 2 * originalVerticalPadding
                     }
