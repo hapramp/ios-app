@@ -25,14 +25,6 @@ class HomeViewController: UIViewController {
         return label
     }()
     
-    let logoutBtn : UIButton = {
-        let button = UIButton(type: UIButton.ButtonType.system)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Logout", for: .normal)
-        button.addTarget(self, action: #selector(handleLogout), for: .touchUpInside)
-        return button
-    }()
-    
     let editInterestBtn : UIButton = {
         let button = UIButton(type: UIButton.ButtonType.system)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -43,28 +35,23 @@ class HomeViewController: UIViewController {
  
     override func viewDidLoad() {
         view.backgroundColor = UIColor.white
-        view.addSubview(logoutBtn)
-        view.addSubview(editInterestBtn)
-        view.addSubview(panel)
-        view.addSubview(interestsPanel)
-        
-        logoutBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        logoutBtn.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        
-        editInterestBtn.topAnchor.constraint(equalTo: logoutBtn.bottomAnchor, constant: 8).isActive = true
-        editInterestBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-        
-        panel.centerXAnchor.constraint(equalTo: logoutBtn.centerXAnchor).isActive = true
-        panel.topAnchor.constraint(equalTo: editInterestBtn.bottomAnchor, constant: 8).isActive = true
-        
-        interestsPanel.topAnchor.constraint(equalTo: panel.bottomAnchor, constant: 8).isActive = true
-        interestsPanel.centerXAnchor.constraint(equalTo: panel.centerXAnchor).isActive = true
-        interestsPanel.widthAnchor.constraint(equalToConstant: 144).isActive = true
-        interestsPanel.heightAnchor.constraint(equalToConstant: 256).isActive = true
-        
-        updatePanel()
-        checkPreRequisite()
+//        view.addSubview(editInterestBtn)
+//        view.addSubview(panel)
+//        view.addSubview(interestsPanel)
+////
+////        editInterestBtn.topAnchor.constraint(equalTo: logoutBtn.bottomAnchor, constant: 8).isActive = true
+////        editInterestBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+////
+////
+////        panel.centerXAnchor.constraint(equalTo: logoutBtn.centerXAnchor).isActive = true
+////        panel.topAnchor.constraint(equalTo: editInterestBtn.bottomAnchor, constant: 8).isActive = true
+////
+//        interestsPanel.topAnchor.constraint(equalTo: panel.bottomAnchor, constant: 8).isActive = true
+//        interestsPanel.centerXAnchor.constraint(equalTo: panel.centerXAnchor).isActive = true
+//        interestsPanel.widthAnchor.constraint(equalToConstant: 144).isActive = true
+//        interestsPanel.heightAnchor.constraint(equalToConstant: 256).isActive = true
+//        updatePanel()
+//        checkPreRequisite()
     }
     
 }

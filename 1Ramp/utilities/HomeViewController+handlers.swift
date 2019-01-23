@@ -8,11 +8,7 @@
 
 import UIKit
 extension HomeViewController{
-    
-    @objc func handleLogout(){
-        AppDelegate.sharedInstance().logout()
-    }
-   
+
     @objc func handleEditInterests(){
         moveToInterestSelection()
     }

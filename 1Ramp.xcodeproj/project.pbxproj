@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		6125F4D84675E728DB0C4AF4 /* Pods_1Ramp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5A36680D9162A7E4CAA76B /* Pods_1Ramp.framework */; };
+		BC0AF40C21DA142300D84EDB /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0AF40B21DA142300D84EDB /* MainController.swift */; };
+		BC0AF40E21DA157600D84EDB /* ContestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0AF40D21DA157600D84EDB /* ContestViewController.swift */; };
+		BC0AF41021DA159E00D84EDB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0AF40F21DA159E00D84EDB /* ProfileViewController.swift */; };
+		BC0AF41221DA15BD00D84EDB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0AF41121DA15BD00D84EDB /* SettingsViewController.swift */; };
+		BC0AF41421DA202A00D84EDB /* AddButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0AF41321DA202A00D84EDB /* AddButtonController.swift */; };
 		BC12A67821D22CA600A33112 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC12A67721D22CA600A33112 /* AppDelegate.swift */; };
 		BC12A67A21D22CA600A33112 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC12A67921D22CA600A33112 /* LoginViewController.swift */; };
 		BC12A67F21D22CA800A33112 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC12A67E21D22CA800A33112 /* Assets.xcassets */; };
@@ -17,6 +22,12 @@
 		BC12A69C21D2447C00A33112 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC12A69B21D2447C00A33112 /* Colors.swift */; };
 		BC12A69E21D2451100A33112 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC12A69D21D2451100A33112 /* Extensions.swift */; };
 		BC12A6A021D24C1A00A33112 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC12A69F21D24C1A00A33112 /* HomeViewController.swift */; };
+		BC3A3E2721F845EF00D3E9AF /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3A3E2621F845EF00D3E9AF /* CustomTabBarController.swift */; };
+		BC3A3E2921F852A000D3E9AF /* CustomTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3A3E2821F852A000D3E9AF /* CustomTabItem.swift */; };
+		BC3A3E2B21F85A3300D3E9AF /* CustomTabDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3A3E2A21F85A3300D3E9AF /* CustomTabDelegate.swift */; };
+		BC3A3E2D21F860C900D3E9AF /* PlusTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3A3E2C21F860C900D3E9AF /* PlusTabItem.swift */; };
+		BC3A3E2F21F892C100D3E9AF /* HomeActionBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3A3E2E21F892C100D3E9AF /* HomeActionBarView.swift */; };
+		BC3A3E3121F8A19200D3E9AF /* SettingsViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3A3E3021F8A19200D3E9AF /* SettingsViewController+handlers.swift */; };
 		BC47D7EA21D4D671007127F8 /* LoginViewController+Handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC47D7E921D4D671007127F8 /* LoginViewController+Handlers.swift */; };
 		BC47D7ED21D510E3007127F8 /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC47D7EC21D510E3007127F8 /* Endpoints.swift */; };
 		BC58A2AD21D5F6F400870F24 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC58A2AC21D5F6F400870F24 /* User.swift */; };
@@ -56,6 +67,11 @@
 		1D5A36680D9162A7E4CAA76B /* Pods_1Ramp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_1Ramp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BABC91F3434B1955F6C472F /* Pods-1Ramp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-1Ramp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-1Ramp/Pods-1Ramp.debug.xcconfig"; sourceTree = "<group>"; };
 		92071F7823ED052A6704AF3F /* Pods-1Ramp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-1Ramp.release.xcconfig"; path = "Pods/Target Support Files/Pods-1Ramp/Pods-1Ramp.release.xcconfig"; sourceTree = "<group>"; };
+		BC0AF40B21DA142300D84EDB /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		BC0AF40D21DA157600D84EDB /* ContestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContestViewController.swift; sourceTree = "<group>"; };
+		BC0AF40F21DA159E00D84EDB /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		BC0AF41121DA15BD00D84EDB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		BC0AF41321DA202A00D84EDB /* AddButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonController.swift; sourceTree = "<group>"; };
 		BC12A67421D22CA600A33112 /* 1Ramp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 1Ramp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC12A67721D22CA600A33112 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC12A67921D22CA600A33112 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +85,12 @@
 		BC12A69B21D2447C00A33112 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		BC12A69D21D2451100A33112 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		BC12A69F21D24C1A00A33112 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		BC3A3E2621F845EF00D3E9AF /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		BC3A3E2821F852A000D3E9AF /* CustomTabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabItem.swift; sourceTree = "<group>"; };
+		BC3A3E2A21F85A3300D3E9AF /* CustomTabDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabDelegate.swift; sourceTree = "<group>"; };
+		BC3A3E2C21F860C900D3E9AF /* PlusTabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusTabItem.swift; sourceTree = "<group>"; };
+		BC3A3E2E21F892C100D3E9AF /* HomeActionBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeActionBarView.swift; sourceTree = "<group>"; };
+		BC3A3E3021F8A19200D3E9AF /* SettingsViewController+handlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsViewController+handlers.swift"; sourceTree = "<group>"; };
 		BC47D7E921D4D671007127F8 /* LoginViewController+Handlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+Handlers.swift"; sourceTree = "<group>"; };
 		BC47D7EC21D510E3007127F8 /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		BC58A2AC21D5F6F400870F24 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -178,6 +200,12 @@
 				BC12A69821D23E6400A33112 /* SplashController.swift */,
 				BC12A69F21D24C1A00A33112 /* HomeViewController.swift */,
 				BC6BA8C621D776080026EB9E /* InterestSelectionViewController.swift */,
+				BC0AF40B21DA142300D84EDB /* MainController.swift */,
+				BC0AF40D21DA157600D84EDB /* ContestViewController.swift */,
+				BC0AF40F21DA159E00D84EDB /* ProfileViewController.swift */,
+				BC0AF41121DA15BD00D84EDB /* SettingsViewController.swift */,
+				BC0AF41321DA202A00D84EDB /* AddButtonController.swift */,
+				BC3A3E2621F845EF00D3E9AF /* CustomTabBarController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -191,6 +219,7 @@
 				BC6BA8C921D7BE500026EB9E /* AssetsUtil.swift */,
 				BCF2721121D8F33E0081F666 /* InterestSelectionViewController+handlers.swift */,
 				BCF2721321D8F7EB0081F666 /* HomeViewController+handlers.swift */,
+				BC3A3E3021F8A19200D3E9AF /* SettingsViewController+handlers.swift */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -238,6 +267,9 @@
 				BC6BA8CB21D7C8CF0026EB9E /* InterestView.swift */,
 				BC6BA8D221D7D61D0026EB9E /* InterestViewCollectionView.swift */,
 				BC6BA8D421D7E7570026EB9E /* Dimensions.swift */,
+				BC3A3E2821F852A000D3E9AF /* CustomTabItem.swift */,
+				BC3A3E2C21F860C900D3E9AF /* PlusTabItem.swift */,
+				BC3A3E2E21F892C100D3E9AF /* HomeActionBarView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -246,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				BC6BA8D021D7D1D80026EB9E /* InterestIconDelegate.swift */,
+				BC3A3E2A21F85A3300D3E9AF /* CustomTabDelegate.swift */,
 			);
 			path = protocols;
 			sourceTree = "<group>";
@@ -428,10 +461,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCF2E2E321D3E28000C6A9CB /* Operations.swift in Sources */,
+				BC3A3E2B21F85A3300D3E9AF /* CustomTabDelegate.swift in Sources */,
 				BC6BA8C721D776080026EB9E /* InterestSelectionViewController.swift in Sources */,
+				BC0AF41221DA15BD00D84EDB /* SettingsViewController.swift in Sources */,
+				BC0AF41421DA202A00D84EDB /* AddButtonController.swift in Sources */,
 				BC6BA8D321D7D61D0026EB9E /* InterestViewCollectionView.swift in Sources */,
 				BC6BA8CA21D7BE500026EB9E /* AssetsUtil.swift in Sources */,
+				BC0AF40C21DA142300D84EDB /* MainController.swift in Sources */,
 				BC58A2B621D6014A00870F24 /* ApiRequests.swift in Sources */,
+				BC0AF41021DA159E00D84EDB /* ProfileViewController.swift in Sources */,
 				BC47D7EA21D4D671007127F8 /* LoginViewController+Handlers.swift in Sources */,
 				BC58A2AF21D5F74700870F24 /* Interest.swift in Sources */,
 				BC58A2B921D6325100870F24 /* LocalData.swift in Sources */,
@@ -442,20 +480,26 @@
 				BC6BA8D521D7E7570026EB9E /* Dimensions.swift in Sources */,
 				BCF2721421D8F7EB0081F666 /* HomeViewController+handlers.swift in Sources */,
 				BC58A2AD21D5F6F400870F24 /* User.swift in Sources */,
+				BC3A3E2D21F860C900D3E9AF /* PlusTabItem.swift in Sources */,
 				BC12A67821D22CA600A33112 /* AppDelegate.swift in Sources */,
 				BC58A2BC21D63F9000870F24 /* LocalUserModel.xcdatamodeld in Sources */,
 				BC6BA8CC21D7C8CF0026EB9E /* InterestView.swift in Sources */,
+				BC3A3E2721F845EF00D3E9AF /* CustomTabBarController.swift in Sources */,
 				BCF2E2EA21D3E71900C6A9CB /* ConfigKeys.swift in Sources */,
 				BCF2E2E521D3E2C300C6A9CB /* Auth.swift in Sources */,
 				BCF2E2DF21D3E21400C6A9CB /* Constants.swift in Sources */,
+				BC3A3E3121F8A19200D3E9AF /* SettingsViewController+handlers.swift in Sources */,
 				BCF2E2E721D3E2D000C6A9CB /* SCConnect.swift in Sources */,
 				BCF2E2E121D3E22800C6A9CB /* SCConfig.swift in Sources */,
 				BC12A69921D23E6400A33112 /* SplashController.swift in Sources */,
 				BC58A2BE21D664EF00870F24 /* CoreDataUtils.swift in Sources */,
 				BC6BA8D121D7D1D80026EB9E /* InterestIconDelegate.swift in Sources */,
+				BC3A3E2921F852A000D3E9AF /* CustomTabItem.swift in Sources */,
 				BC47D7ED21D510E3007127F8 /* Endpoints.swift in Sources */,
 				BC58A2B121D5F93200870F24 /* MicroCommunity.swift in Sources */,
 				BC12A6A021D24C1A00A33112 /* HomeViewController.swift in Sources */,
+				BC0AF40E21DA157600D84EDB /* ContestViewController.swift in Sources */,
+				BC3A3E2F21F892C100D3E9AF /* HomeActionBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
