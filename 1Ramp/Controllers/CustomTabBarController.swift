@@ -138,7 +138,7 @@ class CustomTabBarController: UIViewController, CustomTabDelegate{
     
         //container
         childViewControllerContainer.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
-        childViewControllerContainer.topAnchor.constraint(equalTo: actionBarView.bottomAnchor, constant: -4).isActive = true
+        childViewControllerContainer.topAnchor.constraint(equalTo: actionBarView.bottomAnchor, constant: 0).isActive = true
         childViewControllerContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         childViewControllerContainer.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
         
@@ -204,7 +204,7 @@ class CustomTabBarController: UIViewController, CustomTabDelegate{
     
     override func viewDidAppear(_ animated: Bool) {
         addShadowToBottomBar()
-        addShadowToActionBar()
+        actionBarView.addBottomShadow()
     }
     
     var recentSelectedViewController: UIViewController?

@@ -31,7 +31,7 @@ extension InterestSelectionViewController{
     }
     
     func moveToHome(){
-        let homeController = HomeViewController()
+        let homeController = CustomTabBarController()
         present(homeController, animated: true, completion: nil)
     }
     
@@ -130,7 +130,7 @@ extension InterestSelectionViewController{
         selectedInterests.append(contentsOf: preSelectedInterest!)
     }
     
-    func onInterestTapped(selected: Bool, interestId: Int) {
+    func onInterestTapped(selected: Bool, interestId: Int, interestTag: String) {
         if selected{
             if !selectedInterests.contains(interestId){
                 selectedInterests.append(interestId)

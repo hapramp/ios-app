@@ -7,7 +7,19 @@
 //
 
 import UIKit
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, HomeFilterDelegate {
+
+    let shimmerTest: FeedItemCell = {
+        let fic = FeedItemCell()
+        fic.translatesAutoresizingMaskIntoConstraints = false
+        return fic
+    }()
+    
+    let horizontalInterestFilterView: HorizontalInterestsFilterView = {
+        let hif = HorizontalInterestsFilterView()
+        hif.translatesAutoresizingMaskIntoConstraints =  false
+        return hif
+    }()
     
     let interestsPanel: UITextView = {
         let tv =  UITextView()
@@ -35,23 +47,38 @@ class HomeViewController: UIViewController {
  
     override func viewDidLoad() {
         view.backgroundColor = UIColor.white
-//        view.addSubview(editInterestBtn)
-//        view.addSubview(panel)
-//        view.addSubview(interestsPanel)
-////
-////        editInterestBtn.topAnchor.constraint(equalTo: logoutBtn.bottomAnchor, constant: 8).isActive = true
-////        editInterestBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-////
-////
-////        panel.centerXAnchor.constraint(equalTo: logoutBtn.centerXAnchor).isActive = true
-////        panel.topAnchor.constraint(equalTo: editInterestBtn.bottomAnchor, constant: 8).isActive = true
-////
-//        interestsPanel.topAnchor.constraint(equalTo: panel.bottomAnchor, constant: 8).isActive = true
-//        interestsPanel.centerXAnchor.constraint(equalTo: panel.centerXAnchor).isActive = true
-//        interestsPanel.widthAnchor.constraint(equalToConstant: 144).isActive = true
-//        interestsPanel.heightAnchor.constraint(equalToConstant: 256).isActive = true
-//        updatePanel()
-//        checkPreRequisite()
+        view.addSubview(horizontalInterestFilterView)
+        
+        //test view
+        view.addSubview(shimmerTest)
+        shimmerTest.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        shimmerTest.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        shimmerTest.widthAnchor.constraint(equalToConstant: 400).isActive = true
+        shimmerTest.heightAnchor.constraint(equalToConstant: 520).isActive = true
+        
+        
+        horizontalInterestFilterView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+        horizontalInterestFilterView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
+        horizontalInterestFilterView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
+        horizontalInterestFilterView.heightAnchor.constraint(equalToConstant: Dimensions.InterestViewInHorizontalFilterView.collectionViewHeight()).isActive = true
+        populateInterestsFilter()
+        setDelegateToFilterView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        horizontalInterestFilterView.addBottomShadow()
+        
+        //apply gradient
+        shimmerTest.applyGradientMaskToMock()
+    }
+    
+    public func setDelegateToFilterView(){
+        horizontalInterestFilterView.delegate = self
+    }
+    
+    public func populateInterestsFilter(){
+        let filters = getAllFilters()
+        horizontalInterestFilterView.interests = filters.0
+        horizontalInterestFilterView.preSelections = filters.1
+    }
 }

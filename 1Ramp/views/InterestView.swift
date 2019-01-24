@@ -26,7 +26,7 @@ class InterestView: UIView{
             self.setImageIcon(name: (info?.interestIconName)!)
         }
     }
-   
+    
     let containerView: UIView = {
         let cv = UIView()
         cv.translatesAutoresizingMaskIntoConstraints = false
@@ -41,7 +41,7 @@ class InterestView: UIView{
     
     let interestBackground: UIView = {
         let view = UIView()
-        view.backgroundColor = Colors.design
+        view.backgroundColor = UIColor.lightGray
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -107,13 +107,33 @@ class InterestView: UIView{
     }
     
     @objc func handleInterestIconTapped(){
-        self.setSelected(selected: !selected)
-        if delegate != nil{
-            delegate?.onInterestTapped(selected: selected, interestId: (info?.interestId)!)
+        if selected{
+            //already selected
+            if deSelectable{
+                self.setSelected(selected: !selected)
+                if delegate != nil {
+                    delegate?.onInterestTapped(selected: selected,
+                                               interestId: (info?.interestId)!,
+                                               interestTag: (info?.interestTag)!)
+                }
+            }
+        }else{
+            self.setSelected(selected: !selected)
+            if delegate != nil {
+                delegate?.onInterestTapped(selected: selected,
+                                           interestId: (info?.interestId)!,
+                                           interestTag: (info?.interestTag)!)
+            }
         }
+        
     }
     
-    private func setSelected(selected: Bool){
+    var deSelectable: Bool = true
+    public func deSelectableOnTap(deSelectable: Bool){
+        self.deSelectable = deSelectable
+    }
+    
+    public func setSelected(selected: Bool){
         self.selected = selected
         if selected{
             //remove border
@@ -150,3 +170,35 @@ class InterestView: UIView{
         var selected: Bool
     }
 }
+
+
+
+
+// How to use this View:
+//-----------------------------
+//  1. Instantiate view
+//  let testView = InterestView()
+//  testView.translatesAutoresizingMaskIntoConstraints = false
+//
+//  2. Prepare Info
+//  let info = InterestView.Info.init(
+//    interestColor: AssetsUtil.interstColorFor(tag: interest.tag),
+//    interestIconName: AssetsUtil.interstImageNameFor(tag: interest.tag),
+//    interestTag: interest.tag,
+//    interestName: interest.name,
+//    interestId: interest.id,
+//    selected: isInterestPreSelected(interestId: interest.id))
+//
+//  3. Prepare Config
+//  let config = InterestView.DimensionConfig.init(
+//    width: Dimensions.InterestViewInSelectionController.width,
+//    height: Dimensions.InterestViewInSelectionController.height,
+//    circularViewPadding: Dimensions.InterestViewInSelectionController.circularViewPadding,
+//    imageIconDimension: Dimensions.InterestViewInSelectionController.imageIconDimension,
+//    textSize: Dimensions.InterestViewInSelectionController.textSize,
+//    textHeight: Dimensions.InterestViewInSelectionController.textHeight)
+//
+//  4. Set config, info and delegate(if need callback about selection changes)
+//  testView.setConfig(config: config)
+//  testView.info = info
+//  testView.delegate = self

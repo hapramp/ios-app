@@ -8,11 +8,19 @@
 
 import UIKit
 struct Interest : Codable {
-    let id: Int
-    let name: String
-    let color: String
-    let tag: String
-    let imageUri: String
+    var id: Int
+    var name: String
+    var color: String
+    var tag: String
+    var imageUri: String
+    
+    init(id: Int,name: String, color: String, tag: String, imageUri: String) {
+        self.id = id
+        self.name = name
+        self.color = color
+        self.tag = tag
+        self.imageUri = imageUri
+    }
     
     private enum CodingKeys: String, CodingKey{
         case id

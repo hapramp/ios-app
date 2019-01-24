@@ -150,3 +150,6 @@ xcuserdata/
 # We're using source-control, so this is a "feature" that we do not want!
 
 *.moved-aside
+1Ramp.xcodeproj/*
+1Ramp.xcworkspace/*
+*.pbxproj

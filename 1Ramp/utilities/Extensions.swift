@@ -57,3 +57,15 @@ extension URL{
         return parameters
     }
 }
+
+extension UIView{
+    public func addBottomShadow(){
+        let shadowPath = UIBezierPath(rect: CGRect(x: 0, y: self.bounds.height, width: self.bounds.width, height: 1))
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = CGSize(width: 0, height: 0)
+        self.layer.shadowOpacity = 0.4
+        self.layer.shadowRadius = 2
+        self.layer.shadowPath = shadowPath.cgPath
+    }
+}

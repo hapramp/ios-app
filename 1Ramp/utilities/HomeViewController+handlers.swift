@@ -8,7 +8,7 @@
 
 import UIKit
 extension HomeViewController{
-
+    
     @objc func handleEditInterests(){
         moveToInterestSelection()
     }
@@ -34,6 +34,26 @@ extension HomeViewController{
         moveToInterestSelection()
     }
     
+    func getAllFilters() -> ([Interest], [Bool]){
+        var preSelections = [Bool]()
+        
+        var defInterests = DefaultHomeInterestFilters.getDefaultFilters()
+        //select explore
+        preSelections.append(true)
+        //un-select feed
+        preSelections.append(false)
+        
+        let user = LocalData.sharedInstance.getUser()
+        var preselectedInterests = user?.communities
+        
+        preselectedInterests?.sort(by: {$0.name < $1.name})
+        for interest in preselectedInterests!{
+            defInterests.append(interest)
+            preSelections.append(false)
+        }
+        return (defInterests,preSelections)
+    }
+
     func moveToInterestSelection(){
         let interesetSelectionController = InterestSelectionViewController()
         interesetSelectionController.preSelectedInterest = getPreSelectedInterests()
@@ -49,5 +69,9 @@ extension HomeViewController{
             }
         }
         return its
+    }
+    
+    func onFilterSelected(interestTag: String) {
+        print("selected : \(interestTag)")
     }
 }

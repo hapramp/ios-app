@@ -22,6 +22,12 @@
 		BC12A69C21D2447C00A33112 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC12A69B21D2447C00A33112 /* Colors.swift */; };
 		BC12A69E21D2451100A33112 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC12A69D21D2451100A33112 /* Extensions.swift */; };
 		BC12A6A021D24C1A00A33112 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC12A69F21D24C1A00A33112 /* HomeViewController.swift */; };
+		BC1D5C5421F9887100187706 /* HorizontalInterestsFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1D5C5321F9887100187706 /* HorizontalInterestsFilterView.swift */; };
+		BC1D5C5621F9889100187706 /* BaseCustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1D5C5521F9889100187706 /* BaseCustomUIView.swift */; };
+		BC1D5C5821F990DE00187706 /* HorizontalInterestFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1D5C5721F990DE00187706 /* HorizontalInterestFilterCollectionViewCell.swift */; };
+		BC1D5C5A21F9C06E00187706 /* DefaultHomeInterestFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1D5C5921F9C06E00187706 /* DefaultHomeInterestFilters.swift */; };
+		BC1D5C5C21F9DB3C00187706 /* HomeFilterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1D5C5B21F9DB3C00187706 /* HomeFilterDelegate.swift */; };
+		BC1D5C5E21F9FD4400187706 /* FeedItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1D5C5D21F9FD4400187706 /* FeedItemCell.swift */; };
 		BC3A3E2721F845EF00D3E9AF /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3A3E2621F845EF00D3E9AF /* CustomTabBarController.swift */; };
 		BC3A3E2921F852A000D3E9AF /* CustomTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3A3E2821F852A000D3E9AF /* CustomTabItem.swift */; };
 		BC3A3E2B21F85A3300D3E9AF /* CustomTabDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3A3E2A21F85A3300D3E9AF /* CustomTabDelegate.swift */; };
@@ -85,6 +91,12 @@
 		BC12A69B21D2447C00A33112 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		BC12A69D21D2451100A33112 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		BC12A69F21D24C1A00A33112 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		BC1D5C5321F9887100187706 /* HorizontalInterestsFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalInterestsFilterView.swift; sourceTree = "<group>"; };
+		BC1D5C5521F9889100187706 /* BaseCustomUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCustomUIView.swift; sourceTree = "<group>"; };
+		BC1D5C5721F990DE00187706 /* HorizontalInterestFilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalInterestFilterCollectionViewCell.swift; sourceTree = "<group>"; };
+		BC1D5C5921F9C06E00187706 /* DefaultHomeInterestFilters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultHomeInterestFilters.swift; sourceTree = "<group>"; };
+		BC1D5C5B21F9DB3C00187706 /* HomeFilterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFilterDelegate.swift; sourceTree = "<group>"; };
+		BC1D5C5D21F9FD4400187706 /* FeedItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemCell.swift; sourceTree = "<group>"; };
 		BC3A3E2621F845EF00D3E9AF /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		BC3A3E2821F852A000D3E9AF /* CustomTabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabItem.swift; sourceTree = "<group>"; };
 		BC3A3E2A21F85A3300D3E9AF /* CustomTabDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabDelegate.swift; sourceTree = "<group>"; };
@@ -220,6 +232,7 @@
 				BCF2721121D8F33E0081F666 /* InterestSelectionViewController+handlers.swift */,
 				BCF2721321D8F7EB0081F666 /* HomeViewController+handlers.swift */,
 				BC3A3E3021F8A19200D3E9AF /* SettingsViewController+handlers.swift */,
+				BC1D5C5921F9C06E00187706 /* DefaultHomeInterestFilters.swift */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -270,6 +283,10 @@
 				BC3A3E2821F852A000D3E9AF /* CustomTabItem.swift */,
 				BC3A3E2C21F860C900D3E9AF /* PlusTabItem.swift */,
 				BC3A3E2E21F892C100D3E9AF /* HomeActionBarView.swift */,
+				BC1D5C5321F9887100187706 /* HorizontalInterestsFilterView.swift */,
+				BC1D5C5521F9889100187706 /* BaseCustomUIView.swift */,
+				BC1D5C5721F990DE00187706 /* HorizontalInterestFilterCollectionViewCell.swift */,
+				BC1D5C5D21F9FD4400187706 /* FeedItemCell.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -279,6 +296,7 @@
 			children = (
 				BC6BA8D021D7D1D80026EB9E /* InterestIconDelegate.swift */,
 				BC3A3E2A21F85A3300D3E9AF /* CustomTabDelegate.swift */,
+				BC1D5C5B21F9DB3C00187706 /* HomeFilterDelegate.swift */,
 			);
 			path = protocols;
 			sourceTree = "<group>";
@@ -481,12 +499,17 @@
 				BCF2721421D8F7EB0081F666 /* HomeViewController+handlers.swift in Sources */,
 				BC58A2AD21D5F6F400870F24 /* User.swift in Sources */,
 				BC3A3E2D21F860C900D3E9AF /* PlusTabItem.swift in Sources */,
+				BC1D5C5A21F9C06E00187706 /* DefaultHomeInterestFilters.swift in Sources */,
+				BC1D5C5821F990DE00187706 /* HorizontalInterestFilterCollectionViewCell.swift in Sources */,
 				BC12A67821D22CA600A33112 /* AppDelegate.swift in Sources */,
 				BC58A2BC21D63F9000870F24 /* LocalUserModel.xcdatamodeld in Sources */,
+				BC1D5C5C21F9DB3C00187706 /* HomeFilterDelegate.swift in Sources */,
 				BC6BA8CC21D7C8CF0026EB9E /* InterestView.swift in Sources */,
 				BC3A3E2721F845EF00D3E9AF /* CustomTabBarController.swift in Sources */,
 				BCF2E2EA21D3E71900C6A9CB /* ConfigKeys.swift in Sources */,
+				BC1D5C5E21F9FD4400187706 /* FeedItemCell.swift in Sources */,
 				BCF2E2E521D3E2C300C6A9CB /* Auth.swift in Sources */,
+				BC1D5C5421F9887100187706 /* HorizontalInterestsFilterView.swift in Sources */,
 				BCF2E2DF21D3E21400C6A9CB /* Constants.swift in Sources */,
 				BC3A3E3121F8A19200D3E9AF /* SettingsViewController+handlers.swift in Sources */,
 				BCF2E2E721D3E2D000C6A9CB /* SCConnect.swift in Sources */,
@@ -499,6 +522,7 @@
 				BC58A2B121D5F93200870F24 /* MicroCommunity.swift in Sources */,
 				BC12A6A021D24C1A00A33112 /* HomeViewController.swift in Sources */,
 				BC0AF40E21DA157600D84EDB /* ContestViewController.swift in Sources */,
+				BC1D5C5621F9889100187706 /* BaseCustomUIView.swift in Sources */,
 				BC3A3E2F21F892C100D3E9AF /* HomeActionBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
