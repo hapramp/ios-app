@@ -54,6 +54,9 @@
 		BCF1F99E21FAE2A1004C0546 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF1F99D21FAE2A1004C0546 /* FeedView.swift */; };
 		BCF1F9A021FAF1CD004C0546 /* FeedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF1F99F21FAF1CD004C0546 /* FeedListView.swift */; };
 		BCF1F9A221FB082D004C0546 /* FeedListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF1F9A121FB082D004C0546 /* FeedListDelegate.swift */; };
+		BCF1F9A421FB23BA004C0546 /* FeedsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF1F9A321FB23BA004C0546 /* FeedsApi.swift */; };
+		BCF1F9A621FB23DE004C0546 /* UserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF1F9A521FB23DE004C0546 /* UserApi.swift */; };
+		BCF1F9A821FB253D004C0546 /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF1F9A721FB253D004C0546 /* FeedModel.swift */; };
 		BCF2721221D8F33E0081F666 /* InterestSelectionViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF2721121D8F33E0081F666 /* InterestSelectionViewController+handlers.swift */; };
 		BCF2721421D8F7EB0081F666 /* HomeViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF2721321D8F7EB0081F666 /* HomeViewController+handlers.swift */; };
 		BCF2E2DF21D3E21400C6A9CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF2E2DE21D3E21400C6A9CB /* Constants.swift */; };
@@ -128,6 +131,9 @@
 		BCF1F99D21FAE2A1004C0546 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		BCF1F99F21FAF1CD004C0546 /* FeedListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedListView.swift; sourceTree = "<group>"; };
 		BCF1F9A121FB082D004C0546 /* FeedListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedListDelegate.swift; sourceTree = "<group>"; };
+		BCF1F9A321FB23BA004C0546 /* FeedsApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsApi.swift; sourceTree = "<group>"; };
+		BCF1F9A521FB23DE004C0546 /* UserApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserApi.swift; sourceTree = "<group>"; };
+		BCF1F9A721FB253D004C0546 /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
 		BCF2721121D8F33E0081F666 /* InterestSelectionViewController+handlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InterestSelectionViewController+handlers.swift"; sourceTree = "<group>"; };
 		BCF2721321D8F7EB0081F666 /* HomeViewController+handlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+handlers.swift"; sourceTree = "<group>"; };
 		BCF2E2DE21D3E21400C6A9CB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -261,6 +267,8 @@
 			children = (
 				BC47D7EC21D510E3007127F8 /* Endpoints.swift */,
 				BC58A2B521D6014A00870F24 /* ApiRequests.swift */,
+				BCF1F9A321FB23BA004C0546 /* FeedsApi.swift */,
+				BCF1F9A521FB23DE004C0546 /* UserApi.swift */,
 			);
 			path = api;
 			sourceTree = "<group>";
@@ -271,6 +279,7 @@
 				BC58A2AC21D5F6F400870F24 /* User.swift */,
 				BC58A2AE21D5F74700870F24 /* Interest.swift */,
 				BC58A2B021D5F93200870F24 /* MicroCommunity.swift */,
+				BCF1F9A721FB253D004C0546 /* FeedModel.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -494,6 +503,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCF1F99E21FAE2A1004C0546 /* FeedView.swift in Sources */,
+				BCF1F9A821FB253D004C0546 /* FeedModel.swift in Sources */,
 				BCF2E2E321D3E28000C6A9CB /* Operations.swift in Sources */,
 				BCF1F9A021FAF1CD004C0546 /* FeedListView.swift in Sources */,
 				BC3A3E2B21F85A3300D3E9AF /* CustomTabDelegate.swift in Sources */,
@@ -519,6 +529,7 @@
 				BC1D5C5A21F9C06E00187706 /* DefaultHomeInterestFilters.swift in Sources */,
 				BC1D5C5821F990DE00187706 /* HorizontalInterestFilterCollectionViewCell.swift in Sources */,
 				BC12A67821D22CA600A33112 /* AppDelegate.swift in Sources */,
+				BCF1F9A421FB23BA004C0546 /* FeedsApi.swift in Sources */,
 				BC58A2BC21D63F9000870F24 /* LocalUserModel.xcdatamodeld in Sources */,
 				BC1D5C5C21F9DB3C00187706 /* HomeFilterDelegate.swift in Sources */,
 				BCF1F99A21FADB3B004C0546 /* FeedItemCellShimmerView.swift in Sources */,
@@ -539,6 +550,7 @@
 				BC6BA8D121D7D1D80026EB9E /* InterestIconDelegate.swift in Sources */,
 				BC3A3E2921F852A000D3E9AF /* CustomTabItem.swift in Sources */,
 				BC47D7ED21D510E3007127F8 /* Endpoints.swift in Sources */,
+				BCF1F9A621FB23DE004C0546 /* UserApi.swift in Sources */,
 				BC58A2B121D5F93200870F24 /* MicroCommunity.swift in Sources */,
 				BC12A6A021D24C1A00A33112 /* HomeViewController.swift in Sources */,
 				BC0AF40E21DA157600D84EDB /* ContestViewController.swift in Sources */,

@@ -27,4 +27,9 @@ struct Endpoints{
             return "\(BASE_URL)/users/usernames/\(username)"
         }
     }
+    
+    //Feeds
+    struct Feeds{
+        static let exploreFeeds: String = "\(BASE_URL)/feeds/all"
+    }
 }

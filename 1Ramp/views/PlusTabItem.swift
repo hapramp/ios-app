@@ -57,7 +57,6 @@ class PlusTabItem: UIView {
     
     @objc func handleTabTap(){
         if delegate != nil && tabId != nil{
-            print("sending... \(tabId)")
             delegate?.onTabPressed(tabId: tabId!)
         }
     }

@@ -6,6 +6,7 @@
 //  Copyright © 2019 Hapramp Studios Pvt Ltd. All rights reserved.
 //
 
+import SDWebImage
 import UIKit
 
 class FeedView: BaseCustomUIView{
@@ -22,9 +23,9 @@ class FeedView: BaseCustomUIView{
     
     let userAvatar: UIImageView = {
         let am = UIImageView()
-        am.image = UIImage(named: "kajal")
+        am.image = UIImage(named: "b3")
         am.layer.cornerRadius = 24
-        am.contentMode = .scaleAspectFit
+        am.contentMode = .scaleAspectFill
         am.layer.borderColor = UIColor.lightGray.cgColor
         am.layer.borderWidth = 1
         am.layer.masksToBounds = true
@@ -34,7 +35,7 @@ class FeedView: BaseCustomUIView{
     
     let username: UILabel = {
         let um = UILabel()
-        um.text = "kajal"
+        um.text = "Sweety Gupta"
         um.font = UIFont.boldSystemFont(ofSize: 18)
         um.translatesAutoresizingMaskIntoConstraints = false
         return um
@@ -69,7 +70,7 @@ class FeedView: BaseCustomUIView{
     
     let feedImage: UIImageView = {
         let um = UIImageView()
-        um.image = UIImage(named: "samantha")
+        um.image = UIImage(named: "sweety")
         um.translatesAutoresizingMaskIntoConstraints = false
         return um
     }()
@@ -133,9 +134,9 @@ class FeedView: BaseCustomUIView{
         wrapper.addSubview(timestamp)
         timestamp.topAnchor.constraint(equalTo: wrapper.topAnchor, constant: 16).isActive = true
         timestamp.leftAnchor.constraint(equalTo: username.rightAnchor, constant: 8).isActive = true
-//        timestamp.widthAnchor.constraint(equalToConstant: 64).isActive = true
-//        timestamp.heightAnchor.constraint(equalToConstant: 16).isActive = true
- 
+        //        timestamp.widthAnchor.constraint(equalToConstant: 64).isActive = true
+        //        timestamp.heightAnchor.constraint(equalToConstant: 16).isActive = true
+        
         wrapper.addSubview(feedImage)
         feedImage.topAnchor.constraint(equalTo: userAvatar.bottomAnchor, constant: 12).isActive = true
         feedImage.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).isActive = true
@@ -149,7 +150,7 @@ class FeedView: BaseCustomUIView{
         //feedTitle.heightAnchor.constraint(equalToConstant: 28).isActive = true
         
         wrapper.addSubview(feedSpinnet)
-
+        
         feedSpinnet.topAnchor.constraint(equalTo: feedTitle.bottomAnchor, constant: 8).isActive = true
         feedSpinnet.leftAnchor.constraint(equalTo: leftAnchor, constant: 12).isActive = true
         feedSpinnet.bottomAnchor.constraint(equalTo: wrapper.bottomAnchor, constant: -16).isActive = true
@@ -159,5 +160,26 @@ class FeedView: BaseCustomUIView{
     override func layoutSubviews() {
         super.layoutSubviews()
         layoutMockContainer()
+    }
+    
+    func setFeed(feed: FeedModel) -> () {
+        feedTitle.text = feed.title
+        username.text = feed.author
+        feedSpinnet.text = feed.body
+        timestamp.text = feed.created
+        let avatar_url = URL(string: "https://steemitimages.com/u/\(feed.author)/avatar/large")
+        let jsonMetadata = feed.jsonMetadata
+        switch jsonMetadata {
+        case .metadata(let metadata):
+            if let feed_images = metadata.image{
+                if feed_images.count>0 {
+                    let feed_image_url = URL(string: feed_images[0])
+                    feedImage.sd_setImage(with: feed_image_url, completed: nil)
+                    break
+                }
+            }
+        }
+        
+        userAvatar.sd_setImage(with: avatar_url, completed: nil)
     }
 }

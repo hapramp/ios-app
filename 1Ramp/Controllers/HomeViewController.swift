@@ -16,6 +16,7 @@ class HomeViewController: UIViewController, HomeFilterDelegate, FeedListDelegate
     /*
      delegate method of FeedListView, gets called when scroll happens to FeedListView
      ...
+     ...
      If scroll direction = up
             Scroll up and hide the filter view
      Else scroll direction = down
@@ -63,6 +64,7 @@ class HomeViewController: UIViewController, HomeFilterDelegate, FeedListDelegate
     let feedListView: FeedListView = {
         let fic = FeedListView()
         fic.collectionView.contentInset = UIEdgeInsets(top: 108, left: 0, bottom: 0, right: 0)
+        fic.collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 108, left: 0, bottom: 0, right: 0)
         fic.translatesAutoresizingMaskIntoConstraints = false
         return fic
     }()
@@ -72,31 +74,6 @@ class HomeViewController: UIViewController, HomeFilterDelegate, FeedListDelegate
         hif.translatesAutoresizingMaskIntoConstraints =  false
         return hif
     }()
-    
-    let interestsPanel: UITextView = {
-        let tv =  UITextView()
-        tv.isEditable = false
-        tv.text = "here"
-        tv.font = UIFont.systemFont(ofSize: 18)
-        tv.translatesAutoresizingMaskIntoConstraints = false
-        return tv
-    }()
-    
-    let panel : UILabel = {
-        let label = UILabel()
-        label.text = "init"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    let editInterestBtn : UIButton = {
-        let button = UIButton(type: UIButton.ButtonType.system)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Edit Interests", for: .normal)
-        button.addTarget(self, action: #selector(handleEditInterests), for: .touchUpInside)
-        return button
-    }()
-    
     
     /*
      variable to store top anchor constraint of filter view, we need the top anchor reference to animate the contraints while hiding/showing the view
@@ -114,6 +91,9 @@ class HomeViewController: UIViewController, HomeFilterDelegate, FeedListDelegate
         
         populateInterestsFilter()
         setDelegateToFilterView()
+        
+        //start loading explore feeds by default
+        fetchExploreFeeds()
     }
     
     /*

@@ -9,15 +9,26 @@
 import UIKit
 
 class FeedListView : BaseCustomUIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
+    var feeds: [FeedModel]?
     
     let feedCellId = "iFeedCell"
     
+    func feedCount() -> Int{
+        return feeds?.count ?? 0
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        //we need to show shimmer
+        return feedCount() == 0 ? 1 : feedCount()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: feedCellId, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: feedCellId, for: indexPath) as! FeedCollectionViewCell
+        if feedCount() == 0{
+            cell.feed = nil
+        }else{
+            cell.feed = feeds![indexPath.row]
+        }
         return cell
     }
     
