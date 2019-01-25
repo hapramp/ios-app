@@ -25,6 +25,35 @@ extension HomeViewController{
         interestsPanel.text = interestString
     }
     
+    
+    public func populateInterestsFilter(){
+        let filters = getAllFilters()
+        horizontalInterestFilterView.interests = filters.0
+        horizontalInterestFilterView.preSelections = filters.1
+    }
+    
+    
+    func addConstraintToHorizontalFilterView(){
+        filterViewTopAnchorConstraint = horizontalInterestFilterView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0)
+        filterViewTopAnchorConstraint?.isActive = true
+        horizontalInterestFilterView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
+        horizontalInterestFilterView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
+        horizontalInterestFilterView.heightAnchor.constraint(equalToConstant: Dimensions.InterestViewInHorizontalFilterView.collectionViewHeight()).isActive = true
+    }
+    
+    public func setDelegateToFilterView(){
+        horizontalInterestFilterView.delegate = self
+    }
+    
+    func addConstraintToFeedListView(){
+        feedListView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        feedListView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        feedListView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        feedListView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        //add delegate to listen to events (Scroll direction etc.)
+        feedListView.delegate = self
+    }
+    
     func checkPreRequisite(){
         if let interests = LocalData.sharedInstance.getUser()?.communities{
             if interests.count>0{
@@ -53,7 +82,7 @@ extension HomeViewController{
         }
         return (defInterests,preSelections)
     }
-
+    
     func moveToInterestSelection(){
         let interesetSelectionController = InterestSelectionViewController()
         interesetSelectionController.preSelectedInterest = getPreSelectedInterests()

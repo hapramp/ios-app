@@ -7,10 +7,62 @@
 //
 
 import UIKit
-class HomeViewController: UIViewController, HomeFilterDelegate {
-
-    let shimmerTest: FeedItemCell = {
-        let fic = FeedItemCell()
+class HomeViewController: UIViewController, HomeFilterDelegate, FeedListDelegate {
+    /*
+     Variable to store the state of filter view
+     */
+    var isFilterViewHidden: Bool = false
+    
+    /*
+     delegate method of FeedListView, gets called when scroll happens to FeedListView
+     ...
+     If scroll direction = up
+            Scroll up and hide the filter view
+     Else scroll direction = down
+            Scroll down to its original position
+     */
+    func onFeedListScrolled(inUpDirection: Bool) {
+        if inUpDirection{
+            //hide filter view
+            if !isFilterViewHidden{
+                hideFilterView()
+            }
+        }else{
+            //show filter view
+            if isFilterViewHidden{
+                showFilterView()
+            }
+        }
+    }
+    
+    /*
+     Helper method to hide filter view with animation.
+     */
+    fileprivate func hideFilterView(){
+        filterViewTopAnchorConstraint?.constant = -Dimensions.InterestViewInHorizontalFilterView.collectionViewHeight()
+        UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveEaseIn, animations: {
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+        isFilterViewHidden = true
+    }
+    
+    /*
+     Helper method to show filter view with animation.
+     */
+    fileprivate func showFilterView(){
+        filterViewTopAnchorConstraint?.constant = 0
+        UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+        isFilterViewHidden = false
+    }
+    
+    /*
+     Views
+     */
+    let feedListView: FeedListView = {
+        let fic = FeedListView()
+        fic.collectionView.contentInset = UIEdgeInsets(top: 108, left: 0, bottom: 0, right: 0)
         fic.translatesAutoresizingMaskIntoConstraints = false
         return fic
     }()
@@ -44,41 +96,30 @@ class HomeViewController: UIViewController, HomeFilterDelegate {
         button.addTarget(self, action: #selector(handleEditInterests), for: .touchUpInside)
         return button
     }()
- 
+    
+    
+    /*
+     variable to store top anchor constraint of filter view, we need the top anchor reference to animate the contraints while hiding/showing the view
+     */
+    var filterViewTopAnchorConstraint: NSLayoutConstraint?
+    
     override func viewDidLoad() {
         view.backgroundColor = UIColor.white
+        
+        view.addSubview(feedListView)
         view.addSubview(horizontalInterestFilterView)
         
-        //test view
-        view.addSubview(shimmerTest)
-        shimmerTest.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        shimmerTest.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        shimmerTest.widthAnchor.constraint(equalToConstant: 400).isActive = true
-        shimmerTest.heightAnchor.constraint(equalToConstant: 520).isActive = true
+        addConstraintToFeedListView()
+        addConstraintToHorizontalFilterView()
         
-        
-        horizontalInterestFilterView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-        horizontalInterestFilterView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
-        horizontalInterestFilterView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
-        horizontalInterestFilterView.heightAnchor.constraint(equalToConstant: Dimensions.InterestViewInHorizontalFilterView.collectionViewHeight()).isActive = true
         populateInterestsFilter()
         setDelegateToFilterView()
     }
     
+    /*
+     Call some method which requires view to be inflated before it is called.
+     */
     override func viewDidAppear(_ animated: Bool) {
         horizontalInterestFilterView.addBottomShadow()
-        
-        //apply gradient
-        shimmerTest.applyGradientMaskToMock()
-    }
-    
-    public func setDelegateToFilterView(){
-        horizontalInterestFilterView.delegate = self
-    }
-    
-    public func populateInterestsFilter(){
-        let filters = getAllFilters()
-        horizontalInterestFilterView.interests = filters.0
-        horizontalInterestFilterView.preSelections = filters.1
     }
 }

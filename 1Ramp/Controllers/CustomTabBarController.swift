@@ -113,8 +113,8 @@ class CustomTabBarController: UIViewController, CustomTabDelegate{
     
     fileprivate func setupViews(){
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
-        view.addSubview(statusBar)
         view.addSubview(childViewControllerContainer)
+        view.addSubview(statusBar)
         view.addSubview(actionBarView)
         view.addSubview(bottomBarContainer)
         //add tabs
