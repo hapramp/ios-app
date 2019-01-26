@@ -10,7 +10,7 @@ import UIKit
 
 class FeedItemCellMock: BaseCustomUIView {
     
-    static let mockColor = UIColor.init(white: 0, alpha: 0.15)
+    static let mockColor = UIColor.init(white: 0, alpha: 0.1)
     
     let mockContainer: UIView = {
         let sc = UIView()

@@ -9,7 +9,31 @@
 import UIKit
 
 class FeedListView : BaseCustomUIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
-    var feeds: [FeedModel]?
+    var showingShimmer: Bool = true
+    var delegate: FeedListDelegate?
+    
+    func refresh(){
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    func showLoading(){
+        showingShimmer = true
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    func loadData(feeds: [FeedModel]){
+        showingShimmer = false
+        self.feeds = feeds
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    fileprivate var feeds: [FeedModel]?
     
     let feedCellId = "iFeedCell"
     
@@ -18,23 +42,34 @@ class FeedListView : BaseCustomUIView, UICollectionViewDataSource, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //we need to show shimmer
-        return feedCount() == 0 ? 1 : feedCount()
+        // 2 shimmers will be shown
+        return feedCount() == 0 ? 2 : feedCount()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: feedCellId, for: indexPath) as! FeedCollectionViewCell
-        if feedCount() == 0{
-            cell.feed = nil
+        //handle case of error
+        if showingShimmer {
+            cell.feed = FeedState.loading
         }else{
-            cell.feed = feeds![indexPath.row]
+            cell.feed = FeedState.data(feeds![indexPath.row])
         }
         return cell
     }
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 400, height: 480)
+        let cellHeight = getCellHeight(index: indexPath)
+        return CGSize(width: Dimensions.FeedListView.getWidth(), height: cellHeight)
+    }
+    
+    fileprivate func getCellHeight(index: IndexPath) -> CGFloat{
+        if let feedList = feeds{
+            let feed = feedList[index.row]
+            let height = FeedCollectionViewCellHelper.calculateViewHeightFor(feed: feed)
+            return height
+        }
+        return Dimensions.FeedListView.defaultHeight
     }
     
     let collectionView: UICollectionView = {
@@ -79,8 +114,5 @@ class FeedListView : BaseCustomUIView, UICollectionViewDataSource, UICollectionV
         if let delegate = delegate{
             delegate.onFeedListScrolled(inUpDirection: inUpDirection)
         }
-    }
-    
-    var delegate: FeedListDelegate?
-    
+    }    
 }

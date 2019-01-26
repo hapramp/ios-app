@@ -10,13 +10,16 @@ import UIKit
 
 class FeedCollectionViewCell: UICollectionViewCell{
     
-    var feed: FeedModel?{
+    var feed: FeedState?{
         didSet{
-            if let feed = feed{
+            switch feed! {
+            case .data(let feedData):
                 hideShimmer()
-                feedView.setFeed(feed: feed)
-            }else{
+                feedView.setFeed(feed: feedData)
+                break
+            case .loading:
                 showShimmer()
+                break
             }
         }
     }
@@ -50,13 +53,13 @@ class FeedCollectionViewCell: UICollectionViewCell{
         feedView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
     
-    public func showShimmer(){
+    fileprivate func showShimmer(){
         feedView.isHidden = true
         shimmerView.isHidden = false
         shimmerView.applyGradientMaskToMock()
     }
     
-    public func hideShimmer(){
+    fileprivate func hideShimmer(){
         shimmerView.isHidden = true
         feedView.isHidden = false
     }

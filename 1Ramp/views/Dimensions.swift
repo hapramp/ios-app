@@ -67,4 +67,23 @@ struct Dimensions {
             return topInset + height + bottomInset + 8
         }
     }
+    
+    class FeedListView{
+        static let defaultHeight: CGFloat = 480
+        static let width = UIScreen.main.bounds.width
+        
+        static func getWidth() -> CGFloat{
+            return width
+        }
+    }
+    
+    class FeedCollectionViewCell{
+        static let avatarHeight: CGFloat = 48
+        static let topEdgeToAvatarSpace : CGFloat = 12
+        static let avatarToFeedImageSpace : CGFloat = 12
+        static let feedImageHeight : CGFloat = 256
+        static let feedImageToTitleSpace : CGFloat = 16
+        static let titleToSnippetSpace : CGFloat = 8
+        static let snippetToBottomEdgeSpace : CGFloat = 12
+    }
 }

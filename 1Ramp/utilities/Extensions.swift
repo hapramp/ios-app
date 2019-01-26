@@ -69,3 +69,49 @@ extension UIView{
         self.layer.shadowPath = shadowPath.cgPath
     }
 }
+
+var textHeightDictionary = [String: CGFloat]()
+extension UITextView{
+    public static func calculateHeightOfText(string: String, font: UIFont, width: CGFloat) -> CGFloat{
+        let string = string
+        if let textHeight = textHeightDictionary[string]{
+            return textHeight
+        }
+        
+        let constraintRect = CGSize(width: width,
+                                    height: .greatestFiniteMagnitude)
+        let boundingBox = string.boundingRect(with: constraintRect,
+                                              options: .usesLineFragmentOrigin,
+                                              attributes: [.font: font],
+                                              context: nil)
+        let height = ceil(boundingBox.height) + 16
+        //store height
+        textHeightDictionary[string] = height
+        return height
+    }
+}
+
+
+
+extension UICollectionView{
+    public func calculateHeightOfText(string: String,font: UIFont,completion: @escaping(_ newCalculatedHeight: CGFloat, _ string: String) -> ()){
+        //check in the dict
+        if let textHeight = textHeightDictionary[string]{
+            print("returning from dictionary")
+            completion(textHeight,string)
+            return
+        }
+        
+        let constraintRect = CGSize(width: self.frame.width,
+                                    height: .greatestFiniteMagnitude)
+        let boundingBox = string.boundingRect(with: constraintRect,
+                                              options: .usesLineFragmentOrigin,
+                                              attributes: [.font: font],
+                                              context: nil)
+        let height = ceil(boundingBox.height) + 16
+        //store height
+        textHeightDictionary[string] = height
+        print("returning fresh")
+        completion(height,string)
+    }
+}

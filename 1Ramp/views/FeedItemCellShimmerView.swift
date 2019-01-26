@@ -8,7 +8,7 @@
 
 import UIKit
 class FeedItemCellShimmerView: BaseCustomUIView{
-   
+    
     let mockLayerContainer: FeedItemCellMock = {
         let sl = FeedItemCellMock()
         sl.translatesAutoresizingMaskIntoConstraints = false
@@ -23,7 +23,7 @@ class FeedItemCellShimmerView: BaseCustomUIView{
     
     override func layoutSubviews() {
         super.layoutSubviews()
-
+        
         //add one more layer of mockContainer
         addSubview(mockLayerContainer)
         mockLayerContainer.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
@@ -46,7 +46,7 @@ class FeedItemCellShimmerView: BaseCustomUIView{
         gradientLayer.locations = [0, 0.5, 1]
         gradientLayer.frame = CGRect(x: 0, y: 0, width: frame.height, height: frame.height)
         
-        //rotate 45 degree (-ve)
+        //rotate 90 degree
         let degree = 90 * CGFloat.pi / 180
         gradientLayer.transform = CATransform3DMakeRotation(degree, 0, 0, 1)
         

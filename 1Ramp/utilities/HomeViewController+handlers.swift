@@ -127,14 +127,10 @@ extension HomeViewController{
         ApiRequests.sharedInstance.fetchExploreFeeds { (feeds, err) in
             if feeds != nil{
                 if let list = feeds{
-                    print("Loaded \(list.count) items")
-                    DispatchQueue.main.async {
-                        self.feedListView.feeds = list
-                        self.feedListView.collectionView.reloadData()
-                    }
+                    self.feedListView.loadData(feeds: list)
                 }
             }else{
-                //present error
+                //present error to feedlist view
                 print("error: \(err)")
             }
         }

@@ -101,5 +101,8 @@ class HomeViewController: UIViewController, HomeFilterDelegate, FeedListDelegate
      */
     override func viewDidAppear(_ animated: Bool) {
         horizontalInterestFilterView.addBottomShadow()
+        
+        //inform feedlist view to refresh to show shimmer
+        feedListView.refresh()
     }
 }
