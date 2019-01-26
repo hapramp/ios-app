@@ -10,4 +10,5 @@ import UIKit
 
 protocol FeedListDelegate {
     func onFeedListScrolled(inUpDirection: Bool) -> ()
+    func onLoadMoreFeedsWith(limit: Int, start_author: String, start_permlink: String) -> ()
 }

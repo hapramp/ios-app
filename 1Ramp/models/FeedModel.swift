@@ -50,7 +50,7 @@ struct FeedModel: Codable {
     let pendingPayoutValue: String
     let totalPendingPayoutValue: String
     let activeVotes: [ActiveVote]
-    let authorReputation: String
+    let authorReputation: StringIntegerType
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -111,7 +111,7 @@ struct JSONMetadata: Codable {
 struct ActiveVote: Codable {
     let voter: String
     let weight: Int
-    let rshares: MixedRshare
+    let rshares: StringIntegerType
     let percent: Int
     let reputation: Int
     let time: String
@@ -137,7 +137,7 @@ struct Beneficiary: Codable {
 }
 
 //MixedRshare
-enum MixedRshare: Codable{
+enum StringIntegerType: Codable{
     case string(String)
     case integer(Int)
     
@@ -152,7 +152,7 @@ enum MixedRshare: Codable{
             self = .integer(x)
             return
         }
-        throw DecodingError.typeMismatch(MixedRshare.self, DecodingError.Context.init(codingPath: decoder.codingPath, debugDescription: "cannot parse rshare"))
+        throw DecodingError.typeMismatch(StringIntegerType.self, DecodingError.Context.init(codingPath: decoder.codingPath, debugDescription: "cannot parse rshare"))
     }
     
     func encode(to encoder: Encoder) throws {

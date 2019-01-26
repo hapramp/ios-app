@@ -7,39 +7,16 @@
 //
 
 import UIKit
-class HomeViewController: UIViewController, HomeFilterDelegate, FeedListDelegate {
+class HomeViewController: UIViewController, HomeFilterDelegate {
     /*
      Variable to store the state of filter view
      */
     var isFilterViewHidden: Bool = false
     
     /*
-     delegate method of FeedListView, gets called when scroll happens to FeedListView
-     ...
-     ...
-     If scroll direction = up
-            Scroll up and hide the filter view
-     Else scroll direction = down
-            Scroll down to its original position
-     */
-    func onFeedListScrolled(inUpDirection: Bool) {
-        if inUpDirection{
-            //hide filter view
-            if !isFilterViewHidden{
-                hideFilterView()
-            }
-        }else{
-            //show filter view
-            if isFilterViewHidden{
-                showFilterView()
-            }
-        }
-    }
-    
-    /*
      Helper method to hide filter view with animation.
      */
-    fileprivate func hideFilterView(){
+    func hideFilterView(){
         filterViewTopAnchorConstraint?.constant = -Dimensions.InterestViewInHorizontalFilterView.collectionViewHeight()
         UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveEaseIn, animations: {
             self.view.layoutIfNeeded()
@@ -50,7 +27,7 @@ class HomeViewController: UIViewController, HomeFilterDelegate, FeedListDelegate
     /*
      Helper method to show filter view with animation.
      */
-    fileprivate func showFilterView(){
+    func showFilterView(){
         filterViewTopAnchorConstraint?.constant = 0
         UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
             self.view.layoutIfNeeded()

@@ -78,12 +78,15 @@ struct Dimensions {
     }
     
     class FeedCollectionViewCell{
+        static let titleFontSize: CGFloat = 22
+        static let snippetFontSize: CGFloat = 16
+        
         static let avatarHeight: CGFloat = 48
         static let topEdgeToAvatarSpace : CGFloat = 12
         static let avatarToFeedImageSpace : CGFloat = 12
         static let feedImageHeight : CGFloat = 256
-        static let feedImageToTitleSpace : CGFloat = 16
-        static let titleToSnippetSpace : CGFloat = 8
-        static let snippetToBottomEdgeSpace : CGFloat = 12
+        static let feedImageToTitleSpace : CGFloat = 4
+        static let titleToSnippetSpace : CGFloat = 0
+        static let snippetToBottomEdgeSpace : CGFloat = 8
     }
 }

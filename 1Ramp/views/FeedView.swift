@@ -71,18 +71,22 @@ class FeedView: BaseCustomUIView{
     let feedImage: UIImageView = {
         let um = UIImageView()
         um.image = UIImage(named: "sweety")
+        //um.contentMode = .scaleAspectFill
         um.translatesAutoresizingMaskIntoConstraints = false
         return um
     }()
     
     let feedTitle: UITextView = {
         let um = UITextView()
+        //um.backgroundColor = UIColor.lightGray
         um.textColor = Colors.primaryColorDark
         um.text = "On day of FilmFare"
+        um.textContainer.maximumNumberOfLines = 3
+        um.textContainer.lineBreakMode = .byTruncatingTail
         um.contentInset = UIEdgeInsets(top: -4, left: 0, bottom: 0, right: 0)
         um.isEditable = false
         um.isScrollEnabled = false
-        um.font = UIFont.systemFont(ofSize: 22)
+        um.font = UIFont.systemFont(ofSize: Dimensions.FeedCollectionViewCell.titleFontSize)
         um.translatesAutoresizingMaskIntoConstraints = false
         return um
     }()
@@ -90,12 +94,13 @@ class FeedView: BaseCustomUIView{
     let feedSpinnet: UITextView = {
         let um = UITextView()
         um.isEditable = false
+        //um.backgroundColor = UIColor.lightGray
         um.textColor = Colors.black54
         um.isScrollEnabled = false
         um.textContainer.maximumNumberOfLines = 4
-        um.textContainer.lineBreakMode = .byWordWrapping
+        um.textContainer.lineBreakMode = .byTruncatingTail
         um.contentInset = UIEdgeInsets(top: -8, left: 0, bottom: 0, right: 0)
-        um.font = UIFont.systemFont(ofSize: 16)
+        um.font = UIFont.systemFont(ofSize: Dimensions.FeedCollectionViewCell.snippetFontSize)
         um.translatesAutoresizingMaskIntoConstraints = false
         return um
     }()
@@ -152,7 +157,7 @@ class FeedView: BaseCustomUIView{
         feedImage.leftAnchor.constraint(equalTo: wrapper.leftAnchor, constant: 0).isActive = true
         feedImage.rightAnchor.constraint(equalTo: wrapper.rightAnchor, constant: 0).isActive = true
         feedImage.heightAnchor.constraint(equalToConstant: Dimensions.FeedCollectionViewCell.feedImageHeight)
-            .isActive = true
+        
         
         wrapper.addSubview(feedTitle)
         feedTitle.topAnchor.constraint(equalTo: feedImage.bottomAnchor,

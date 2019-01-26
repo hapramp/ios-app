@@ -9,38 +9,34 @@
 import UIKit
 
 class FeedCollectionViewCellHelper{
-    //fixed values
-    static let avatarHeight: CGFloat = 48
-    static let topAvatarSpace : CGFloat = 12
-    static let avatarImageSpace : CGFloat = 12
-    static let imageHeight : CGFloat = 256
-    static let imageTitleSpace : CGFloat = 16
-    static let titleSnippetSpace : CGFloat = 8
-    static let bottomSpace : CGFloat = 12
     
     static func calculateViewHeightFor(feed: FeedModel) -> CGFloat{
         //calculate title Height
-        let width = UIScreen.main.bounds.width
+        let width = UIScreen.main.bounds.width - 24
+        //calculate snippetHeight
+        let feedTitleFont = UIFont.systemFont(ofSize: Dimensions.FeedCollectionViewCell.titleFontSize)
+        // keep max 4 lines
+        let maxTitleHeight: CGFloat = feedTitleFont.lineHeight * 3
         
-        let titleHeight : CGFloat = UITextView.calculateHeightOfText(string: feed.title, font: UIFont.systemFont(ofSize: 22), width: width)
+        let titleHeight : CGFloat = min(UITextView.calculateHeightOfText(string: feed.title, font: feedTitleFont, width: width), maxTitleHeight)
         
         //calculate snippetHeight
-        let feedSpinnetFont = UIFont.systemFont(ofSize: 16)
+        let feedSpinnetFont = UIFont.systemFont(ofSize: Dimensions.FeedCollectionViewCell.snippetFontSize)
         // keep max 4 lines
-        let maxHeight: CGFloat = feedSpinnetFont.lineHeight * 5
+        let maxSnippetHeight: CGFloat = feedSpinnetFont.lineHeight * 5
         let snippetHeight : CGFloat = min(
             UITextView.calculateHeightOfText(string: feed.body, font: feedSpinnetFont, width: width)
-            ,maxHeight)
+            ,maxSnippetHeight)
         
-        let viewTotalHeight = topAvatarSpace +
-            avatarHeight +
-            avatarImageSpace +
-            imageHeight +
-            imageTitleSpace +
+        let viewTotalHeight = Dimensions.FeedCollectionViewCell.topEdgeToAvatarSpace +
+            Dimensions.FeedCollectionViewCell.avatarHeight +
+            Dimensions.FeedCollectionViewCell.avatarToFeedImageSpace +
+            Dimensions.FeedCollectionViewCell.feedImageHeight +
+            Dimensions.FeedCollectionViewCell.feedImageToTitleSpace +
             titleHeight +
-            titleSnippetSpace +
+            Dimensions.FeedCollectionViewCell.titleToSnippetSpace +
             snippetHeight +
-        bottomSpace
+       Dimensions.FeedCollectionViewCell.snippetToBottomEdgeSpace
         
         return viewTotalHeight
     }

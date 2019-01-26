@@ -37,6 +37,7 @@
 		BC47D7EA21D4D671007127F8 /* LoginViewController+Handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC47D7E921D4D671007127F8 /* LoginViewController+Handlers.swift */; };
 		BC47D7ED21D510E3007127F8 /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC47D7EC21D510E3007127F8 /* Endpoints.swift */; };
 		BC4A336621FC9CC5007C4122 /* FeedCollectionViewCellHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4A336521FC9CC5007C4122 /* FeedCollectionViewCellHelper.swift */; };
+		BC4A336921FCD5C1007C4122 /* FeedListView+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4A336821FCD5C1007C4122 /* FeedListView+handlers.swift */; };
 		BC58A2AD21D5F6F400870F24 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC58A2AC21D5F6F400870F24 /* User.swift */; };
 		BC58A2AF21D5F74700870F24 /* Interest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC58A2AE21D5F74700870F24 /* Interest.swift */; };
 		BC58A2B121D5F93200870F24 /* MicroCommunity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC58A2B021D5F93200870F24 /* MicroCommunity.swift */; };
@@ -116,6 +117,7 @@
 		BC47D7E921D4D671007127F8 /* LoginViewController+Handlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+Handlers.swift"; sourceTree = "<group>"; };
 		BC47D7EC21D510E3007127F8 /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		BC4A336521FC9CC5007C4122 /* FeedCollectionViewCellHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewCellHelper.swift; sourceTree = "<group>"; };
+		BC4A336821FCD5C1007C4122 /* FeedListView+handlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedListView+handlers.swift"; sourceTree = "<group>"; };
 		BC58A2AC21D5F6F400870F24 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BC58A2AE21D5F74700870F24 /* Interest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interest.swift; sourceTree = "<group>"; };
 		BC58A2B021D5F93200870F24 /* MicroCommunity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicroCommunity.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 			isa = PBXGroup;
 			children = (
 				BC4A336521FC9CC5007C4122 /* FeedCollectionViewCellHelper.swift */,
+				BC4A336821FCD5C1007C4122 /* FeedListView+handlers.swift */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -577,6 +580,7 @@
 				BC3A3E3121F8A19200D3E9AF /* SettingsViewController+handlers.swift in Sources */,
 				BCF2E2E721D3E2D000C6A9CB /* SCConnect.swift in Sources */,
 				BCF2E2E121D3E22800C6A9CB /* SCConfig.swift in Sources */,
+				BC4A336921FCD5C1007C4122 /* FeedListView+handlers.swift in Sources */,
 				BC12A69921D23E6400A33112 /* SplashController.swift in Sources */,
 				BC58A2BE21D664EF00870F24 /* CoreDataUtils.swift in Sources */,
 				BC6BA8D121D7D1D80026EB9E /* InterestIconDelegate.swift in Sources */,

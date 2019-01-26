@@ -7,7 +7,30 @@
 //
 
 import UIKit
-extension HomeViewController{
+extension HomeViewController: FeedListDelegate{
+    
+    /*
+     delegate method of FeedListView, gets called when scroll happens to FeedListView
+     ...
+     ...
+     If scroll direction = up
+     Scroll up and hide the filter view
+     Else scroll direction = down
+     Scroll down to its original position
+     */
+    func onFeedListScrolled(inUpDirection: Bool) {
+        if inUpDirection{
+            //hide filter view
+            if !isFilterViewHidden{
+                hideFilterView()
+            }
+        }else{
+            //show filter view
+            if isFilterViewHidden{
+                showFilterView()
+            }
+        }
+    }
     
     /*
      Gathers data for Filter View
@@ -124,10 +147,11 @@ extension HomeViewController{
     }
     
     public func fetchExploreFeeds(){
-        ApiRequests.sharedInstance.fetchExploreFeeds { (feeds, err) in
+        ApiRequests.sharedInstance.fetchExploreFeeds(limit: ApiRequests.DefaultExploreFeedLimit , start_author: "", start_permlink: "") { (feeds, err) in
             if feeds != nil{
                 if let list = feeds{
-                    self.feedListView.loadData(feeds: list)
+                    print("loaded first: \(list.count)")
+                    self.feedListView.setFeeds(feeds: list)
                 }
             }else{
                 //present error to feedlist view
@@ -136,4 +160,18 @@ extension HomeViewController{
         }
     }
     
+    func onLoadMoreFeedsWith(limit: Int, start_author: String, start_permlink: String) {
+        print("requesting limit:\(limit) sp:\(start_permlink) sa:\(start_author)")
+        ApiRequests.sharedInstance.fetchExploreFeeds(limit: limit, start_author: start_author, start_permlink: start_permlink) { (feeds, err) in
+            if feeds != nil{
+                if let list = feeds{
+                    print("loaded more: \(list.count)")
+                    self.feedListView.appendFeeds(feeds: list)
+                }
+            }else{
+                //present error to feedlist view
+                print("error: \(err)")
+            }
+        }
+    }
 }
