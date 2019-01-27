@@ -41,9 +41,6 @@ extension ApiRequests{
                 let jsonDecoder = JSONDecoder()
                 do{
                     if let data = responseData.data{
-                        print("response \(data)")
-                        let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)
-                        print("Json: \(json)")
                         let feedItems = try jsonDecoder.decode([FeedModel].self, from: data)
                         completion(feedItems,"success")
                     }

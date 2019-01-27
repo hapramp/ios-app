@@ -40,8 +40,8 @@ class HomeViewController: UIViewController, HomeFilterDelegate {
      */
     let feedListView: FeedListView = {
         let fic = FeedListView()
-        fic.collectionView.contentInset = UIEdgeInsets(top: 108, left: 0, bottom: 0, right: 0)
-        fic.collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 108, left: 0, bottom: 0, right: 0)
+        fic.collectionView.contentInset = UIEdgeInsets(top: 108, left: 0, bottom: 64, right: 0)
+        fic.collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 108, left: 0, bottom: 64, right: 0)
         fic.translatesAutoresizingMaskIntoConstraints = false
         return fic
     }()

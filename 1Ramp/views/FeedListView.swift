@@ -26,9 +26,14 @@ class FeedListView : BaseCustomUIView, UICollectionViewDataSource, UICollectionV
         }
     }
     
-    func appendFeeds(feeds: [FeedModel]){
-        self.feeds?.append(contentsOf: feeds)
-        self.feedCount = feeds.count
+    func appendFeeds(newFeeds: [FeedModel]){
+        if newFeeds.count < ApiRequests.DefaultExploreFeedLimit{
+            haveMoreFeeds = false
+        }
+        for feed in newFeeds{
+            feeds?.append(feed)
+        }
+        self.feedCount = feeds!.count
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }

@@ -161,12 +161,11 @@ extension HomeViewController: FeedListDelegate{
     }
     
     func onLoadMoreFeedsWith(limit: Int, start_author: String, start_permlink: String) {
-        print("requesting limit:\(limit) sp:\(start_permlink) sa:\(start_author)")
         ApiRequests.sharedInstance.fetchExploreFeeds(limit: limit, start_author: start_author, start_permlink: start_permlink) { (feeds, err) in
             if feeds != nil{
                 if let list = feeds{
                     print("loaded more: \(list.count)")
-                    self.feedListView.appendFeeds(feeds: list)
+                    self.feedListView.appendFeeds(newFeeds: list)
                 }
             }else{
                 //present error to feedlist view
