@@ -11,6 +11,7 @@ import UIKit
 
 class FeedView: BaseCustomUIView{
     
+    var feedIndex: Int = 0
     static let mockColor = UIColor.init(white: 0, alpha: 0.15)
     
     let wrapper: UIView = {
@@ -70,8 +71,8 @@ class FeedView: BaseCustomUIView{
     
     let feedImage: UIImageView = {
         let um = UIImageView()
-        um.image = UIImage(named: "sweety")
-        //um.contentMode = .scaleAspectFill
+        um.contentMode = .scaleAspectFit
+        um.backgroundColor = UIColor.red
         um.translatesAutoresizingMaskIntoConstraints = false
         return um
     }()
@@ -120,6 +121,7 @@ class FeedView: BaseCustomUIView{
     }()
     
     var feedTitleHeightContraint: NSLayoutConstraint?
+    var feedImageHeightContstraint: NSLayoutConstraint?
     
     fileprivate func layoutMockContainer(){
         addSubview(wrapper)
@@ -156,8 +158,7 @@ class FeedView: BaseCustomUIView{
             .isActive = true
         feedImage.leftAnchor.constraint(equalTo: wrapper.leftAnchor, constant: 0).isActive = true
         feedImage.rightAnchor.constraint(equalTo: wrapper.rightAnchor, constant: 0).isActive = true
-        feedImage.heightAnchor.constraint(equalToConstant: Dimensions.FeedCollectionViewCell.feedImageHeight)
-        
+        feedImageHeightContstraint = feedImage.heightAnchor.constraint(equalToConstant:0)
         
         wrapper.addSubview(feedTitle)
         feedTitle.topAnchor.constraint(equalTo: feedImage.bottomAnchor,
@@ -194,12 +195,48 @@ class FeedView: BaseCustomUIView{
         case .metadata(let metadata):
             if let feed_images = metadata.image{
                 if feed_images.count>0 {
-                    let feed_image_url = URL(string: feed_images[0])
-                    feedImage.sd_setImage(with: feed_image_url, completed: nil)
+                    let s_url = feed_images[0]
+                    if s_url.count>0{
+                        let feed_image_url = URL(string: ImageHelper.getResizedImageUrl(url: feed_images[0]))
+                        feedImage.sd_setImage(with: feed_image_url) { (image, error, cacheType, url) in
+                            if error != nil{
+                                self.removeImage()
+                            }else{
+                                self.showImage(withFrame: (image?.size)!)
+                            }
+                        }
+                    }else{
+                        removeImage()
+                    }
                     break
+                }else{
+                    //remove image
+                    removeImage()
                 }
+            }else{
+                //remove image
+                removeImage()
             }
         }
         userAvatar.sd_setImage(with: avatar_url, completed: nil)
+    }
+    
+    func removeImage(){
+        feedImageHeightContstraint?.constant = 0
+        feedImageHeightContstraint?.isActive = true
+        self.wrapper.setNeedsLayout()
+        UIView.animate(withDuration: 0.1) {
+            self.wrapper.layoutIfNeeded()
+        }
+    }
+    
+    func showImage(withFrame: CGSize){
+        feedImage.removeConstraint(feedImageHeightContstraint!)
+        feedImageHeightContstraint?.constant = withFrame.height
+        feedImageHeightContstraint?.isActive = true
+        self.wrapper.setNeedsLayout()
+        UIView.animate(withDuration: 0.1) {
+            self.wrapper.layoutIfNeeded()
+        }
     }
 }

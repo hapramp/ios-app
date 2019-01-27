@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FeedCollectionViewCell: UICollectionViewCell{
+class FeedTableViewCell: UITableViewCell{
     
     var feed: FeedState?{
         didSet{
@@ -21,6 +21,12 @@ class FeedCollectionViewCell: UICollectionViewCell{
                 showShimmer()
                 break
             }
+        }
+    }
+    
+    var feedIndex: Int?{
+        didSet{
+            feedView.feedIndex = feedIndex!
         }
     }
     
@@ -42,6 +48,7 @@ class FeedCollectionViewCell: UICollectionViewCell{
         super.layoutSubviews()
         addSubview(shimmerView)
         addSubview(feedView)
+        selectionStyle = .none
         shimmerView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         shimmerView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         shimmerView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true

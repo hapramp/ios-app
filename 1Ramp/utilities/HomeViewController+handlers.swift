@@ -164,7 +164,7 @@ extension HomeViewController: FeedListDelegate{
         ApiRequests.sharedInstance.fetchExploreFeeds(limit: limit, start_author: start_author, start_permlink: start_permlink) { (feeds, err) in
             if feeds != nil{
                 if let list = feeds{
-                    print("loaded more: \(list.count)")
+                    //print("loaded more: \(list.count)")
                     self.feedListView.appendFeeds(newFeeds: list)
                 }
             }else{

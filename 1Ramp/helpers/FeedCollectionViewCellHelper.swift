@@ -27,11 +27,10 @@ class FeedCollectionViewCellHelper{
         let snippetHeight : CGFloat = min(
             UITextView.calculateHeightOfText(string: feed.body, font: feedSpinnetFont, width: width)
             ,maxSnippetHeight)
-        
         let viewTotalHeight = Dimensions.FeedCollectionViewCell.topEdgeToAvatarSpace +
             Dimensions.FeedCollectionViewCell.avatarHeight +
             Dimensions.FeedCollectionViewCell.avatarToFeedImageSpace +
-            Dimensions.FeedCollectionViewCell.feedImageHeight +
+            0 +
             Dimensions.FeedCollectionViewCell.feedImageToTitleSpace +
             titleHeight +
             Dimensions.FeedCollectionViewCell.titleToSnippetSpace +

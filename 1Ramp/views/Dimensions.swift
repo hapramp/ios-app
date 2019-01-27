@@ -80,13 +80,59 @@ struct Dimensions {
     class FeedCollectionViewCell{
         static let titleFontSize: CGFloat = 22
         static let snippetFontSize: CGFloat = 16
-        
         static let avatarHeight: CGFloat = 48
         static let topEdgeToAvatarSpace : CGFloat = 12
         static let avatarToFeedImageSpace : CGFloat = 12
-        static let feedImageHeight : CGFloat = 256
+        static let defaultFeedImageHeight : CGFloat = CGFloat(ImageHelper.getEstimatedImageHeight())
         static let feedImageToTitleSpace : CGFloat = 4
         static let titleToSnippetSpace : CGFloat = 0
         static let snippetToBottomEdgeSpace : CGFloat = 8
+        
+        static func calculateViewHeightFor(feed: FeedModel) -> CGFloat{
+            //calculate title Height
+            let width = UIScreen.main.bounds.width - 24
+            //calculate snippetHeight
+            let feedTitleFont = UIFont.systemFont(ofSize: Dimensions.FeedCollectionViewCell.titleFontSize)
+            // keep max 4 lines
+            let maxTitleHeight: CGFloat = feedTitleFont.lineHeight * 3
+            
+            let titleHeight : CGFloat = min(UITextView.calculateHeightOfText(string: feed.title, font: feedTitleFont, width: width), maxTitleHeight)
+            
+            //calculate snippetHeight
+            let feedSpinnetFont = UIFont.systemFont(ofSize: Dimensions.FeedCollectionViewCell.snippetFontSize)
+            // keep max 4 lines
+            let maxSnippetHeight: CGFloat = feedSpinnetFont.lineHeight * 5
+            let snippetHeight : CGFloat = min(
+                UITextView.calculateHeightOfText(string: feed.body, font: feedSpinnetFont, width: width)
+                ,maxSnippetHeight)
+            
+            var feedImageHeight : CGFloat = 0
+            let jsonMetadata = feed.jsonMetadata
+            switch jsonMetadata {
+            case .metadata(let metadata):
+                if let feed_images = metadata.image{
+                    if feed_images.count>0 {
+                        if feed_images[0].count>0 {
+                            //print("Valid Url \(feed_images[0])")
+                         feedImageHeight = defaultFeedImageHeight
+                        }
+                    }
+                }
+            }
+            
+            let height1 = topEdgeToAvatarSpace +
+            avatarHeight +
+            avatarToFeedImageSpace +
+            feedImageHeight +
+            feedImageToTitleSpace
+            
+            let height2 =
+                titleHeight +
+                titleToSnippetSpace +
+                snippetHeight +
+                snippetToBottomEdgeSpace
+            
+            return height1 + height2
+        }
     }
 }
