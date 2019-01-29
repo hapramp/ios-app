@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FeedTableViewCell: UITableViewCell{
+class FeedCollectionViewCell: UICollectionViewCell{
     
     var feed: FeedState?{
         didSet{
@@ -34,12 +34,14 @@ class FeedTableViewCell: UITableViewCell{
     
     let shimmerView: FeedItemCellShimmerView = {
         let sc = FeedItemCellShimmerView()
+        sc.accessibilityIdentifier = "CollectionViewCell.shimmerView"
         sc.translatesAutoresizingMaskIntoConstraints = false
         return sc
     }()
     
     let feedView: FeedView = {
         let fv = FeedView()
+        fv.accessibilityIdentifier = "CollectionViewCell.feedView"
         fv.translatesAutoresizingMaskIntoConstraints = false
         return fv
     }()
@@ -48,7 +50,7 @@ class FeedTableViewCell: UITableViewCell{
         super.layoutSubviews()
         addSubview(shimmerView)
         addSubview(feedView)
-        selectionStyle = .none
+        
         shimmerView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         shimmerView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         shimmerView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
@@ -69,5 +71,12 @@ class FeedTableViewCell: UITableViewCell{
     fileprivate func hideShimmer(){
         shimmerView.isHidden = true
         feedView.isHidden = false
+    }
+    
+    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+        layoutIfNeeded()
+        let layoutAttributes = super.preferredLayoutAttributesFitting(layoutAttributes)
+        layoutAttributes.bounds.size = systemLayoutSizeFitting(CGSize(width: Dimensions.FeedListView.width, height: 480), withHorizontalFittingPriority: .required, verticalFittingPriority: .defaultLow)
+        return layoutAttributes
     }
 }

@@ -8,17 +8,17 @@
 
 import UIKit
 
-extension FeedListView: UITableViewDataSourcePrefetching{
+extension FeedListView{
 
     func refresh(){
         DispatchQueue.main.async {
-            self.tableView.reloadData()
+            self.collectionView.reloadData()
         }
     }
     
     func showLoading(){
         DispatchQueue.main.async {
-            self.tableView.reloadData()
+            self.collectionView.reloadData()
         }
     }
     

@@ -8,34 +8,29 @@
 
 import UIKit
 
-class FeedListView : BaseCustomUIView, UITableViewDataSource, UITableViewDelegate{
+class FeedListView : BaseCustomUIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSourcePrefetching{
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return feedCount == 0 ? 2 : feedCount + (haveMoreFeeds ? 1 : 0)
     }
-   
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return getCellHeight(index: indexPath)
+    
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        print("Prefetching on the go")
+        for indexPath in indexPaths{
+            if indexPath.row>=(feedCount-2) && indexPath.row<=feedCount && haveMoreFeeds{
+                if prefetchingForIndex != feedCount{
+                    loadMoreFeedsAfter(index: feedCount-1)
+                    prefetchingForIndex = feedCount
+                }
+            }
+        }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: feedCellId, for: indexPath) as! FeedTableViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: feedCellId, for: indexPath) as! FeedCollectionViewCell
         let feedState = getFeedStateAt(row: indexPath.row)
         cell.feed = feedState
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        //get the highest
-        for indexPath in indexPaths{
-            print("Prefetch row \(indexPath.row)")
-//            if indexPath.row>=(feedCount-2) && indexPath.row<=feedCount && haveMoreFeeds{
-//                if prefetchingForIndex != feedCount{
-//                    loadMoreFeedsAfter(index: feedCount-1)
-//                    prefetchingForIndex = feedCount
-//                }
-//            }
-        }
     }
     
     var haveMoreFeeds : Bool = true
@@ -50,7 +45,7 @@ class FeedListView : BaseCustomUIView, UITableViewDataSource, UITableViewDelegat
         self.feeds = feeds
         self.feedCount = feeds.count
         DispatchQueue.main.async {
-            self.tableView.reloadData()
+            self.collectionView.reloadData()
         }
     }
     
@@ -63,7 +58,7 @@ class FeedListView : BaseCustomUIView, UITableViewDataSource, UITableViewDelegat
         }
         self.feedCount = feeds!.count
         DispatchQueue.main.async {
-            self.tableView.reloadData()
+            self.collectionView.reloadData()
         }
     }
     
@@ -95,8 +90,10 @@ class FeedListView : BaseCustomUIView, UITableViewDataSource, UITableViewDelegat
         }
     }
     
-    let tableView: UITableView = {
-        let cv = UITableView(frame: .zero)
+    let collectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         cv.backgroundColor = UIColor.white
         cv.translatesAutoresizingMaskIntoConstraints = false
         return cv
@@ -104,18 +101,26 @@ class FeedListView : BaseCustomUIView, UITableViewDataSource, UITableViewDelegat
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        addSubview(tableView)
-        setupTableView()
+        addSubview(collectionView)
+        setupCollectionView()
     }
     
-    func setupTableView(){
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.prefetchDataSource = self
-        tableView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        tableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        tableView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: feedCellId)
+    let columnLayout = FlowLayout()
+    func setupCollectionView(){
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        collectionView.alwaysBounceVertical = true
+        collectionView.collectionViewLayout = columnLayout
+        collectionView.contentInsetAdjustmentBehavior = .always
+        
+        collectionView.isPrefetchingEnabled = true
+        collectionView.prefetchDataSource = self
+
+        collectionView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        collectionView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        collectionView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        collectionView.register(FeedCollectionViewCell.self, forCellWithReuseIdentifier: feedCellId)
     }
 }

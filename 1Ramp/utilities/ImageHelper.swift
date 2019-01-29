@@ -17,4 +17,7 @@ class ImageHelper{
         let deviceWidth = Int(UIScreen.main.bounds.width)
         return (deviceWidth * 3)/4
     }
+    
+    //transparent image
+    static let defaultFeedImagePlaceholder = "https://user-images.githubusercontent.com/10809719/51898010-0081f080-23d6-11e9-9650-a97c01db3367.png"
 }
