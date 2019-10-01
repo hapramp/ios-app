@@ -9,6 +9,7 @@
 import UIKit
 
 class AssetsUtil {
+    static let WhitePlus = "add"
     static let Art: String = "art"
     static let ArtFilled: String = "art_filled"
     static let Dance: String = "dance"
@@ -27,8 +28,34 @@ class AssetsUtil {
     static let DesignFilled: String = "design_filled"
     static let CloseIcon: String = "close_icon"
     
+    //Main Tab Items
+    static let Home: String = "home_icon"
+    static let HomeSelected: String = "home_icon_selected"
+    static let Contest: String = "competition"
+    static let ContestSelected: String = "competition_filled"
+    static let Profile: String = "user_icon"
+    static let ProfileSelected: String = "user_icon_selected"
+    static let Settings: String = "settings_icon"
+    static let SettingsSelected: String = "settings_icon_selected"
+    
+    
+    //Action bar items
+    static let SearchIcon: String = "search"
+    static let NotificationIcon: String = "notify"
+    static let HaprampLogoIcon: String = "hapramp_logo"
+    
+    //Home Filters Item
+    static let ExploreIcon: String = "explore"
+    static let FeedIcon: String = "feed"
+    static let ExploreId: Int = 101
+    static let FeedId: Int = 0
+    
     static func interstImageNameFor(tag: String)->String{
         switch tag{
+        case "hapramp-explore":
+            return ExploreIcon
+        case "hapramp-feed":
+            return FeedIcon
         case "hapramp-art":
             return ArtFilled
         case "hapramp-dance":
@@ -52,6 +79,10 @@ class AssetsUtil {
     
     static func interstColorFor(tag: String)-> UIColor{
         switch tag{
+        case "hapramp-explore":
+            return Colors.primaryColor
+        case "hapramp-feed":
+            return Colors.primaryColor
         case "hapramp-art":
             return Colors.art
         case "hapramp-dance":
@@ -71,7 +102,5 @@ class AssetsUtil {
         default:
             return UIColor.lightGray
         }
-    }
-    
-    
+    }    
 }

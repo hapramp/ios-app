@@ -27,4 +27,12 @@ struct Endpoints{
             return "\(BASE_URL)/users/usernames/\(username)"
         }
     }
+    
+    //Feeds
+    struct Feeds{
+        static let exploreFeeds: String = "\(BASE_URL)/feeds/all"
+        static let exploreFeedsWith = {(limit: Int, start_author: String, start_permlink: String) -> String in
+            return "\(BASE_URL)/feeds/all?limit=\(limit)&start_author=\(start_author)&start_permlink=\(start_permlink)"
+        }
+    }
 }

@@ -78,7 +78,7 @@ extension LoginViewController{
     }
     
     func moveToHomePage(){
-        let homeController = HomeViewController()
+        let homeController = CustomTabBarController()
         present(homeController, animated: true, completion: nil)
     }
     
@@ -122,6 +122,5 @@ extension LoginViewController{
         signupButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         signupButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
         signupButton.widthAnchor.constraint(equalToConstant: 172).isActive = true
-        
     }
 }

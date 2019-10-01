@@ -33,7 +33,7 @@ class SplashController: UIViewController {
         let nextViewController: UIViewController?
         let lastLoggedIn = LocalData.sharedInstance.getLoggedIn()
         if lastLoggedIn {
-            nextViewController = HomeViewController()
+            nextViewController = CustomTabBarController()
         }else{
             nextViewController = LoginViewController()
         }

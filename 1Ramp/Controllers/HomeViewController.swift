@@ -7,64 +7,80 @@
 //
 
 import UIKit
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, HomeFilterDelegate {
+    /*
+     Variable to store the state of filter view
+     */
+    var isFilterViewHidden: Bool = false
     
-    let interestsPanel: UITextView = {
-        let tv =  UITextView()
-        tv.isEditable = false
-        tv.text = "here"
-        tv.font = UIFont.systemFont(ofSize: 18)
-        tv.translatesAutoresizingMaskIntoConstraints = false
-        return tv
+    /*
+     Helper method to hide filter view with animation.
+     */
+    func hideFilterView(){
+        filterViewTopAnchorConstraint?.constant = -Dimensions.InterestViewInHorizontalFilterView.collectionViewHeight()
+        UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveEaseIn, animations: {
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+        isFilterViewHidden = true
+    }
+    
+    /*
+     Helper method to show filter view with animation.
+     */
+    func showFilterView(){
+        filterViewTopAnchorConstraint?.constant = 0
+        UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+        isFilterViewHidden = false
+    }
+    
+    /*
+     Views
+     */
+    let feedListView: FeedListView = {
+        let fic = FeedListView()
+        fic.backgroundColor = UIColor.red
+        fic.collectionView.contentInset = UIEdgeInsets(top: 108, left: 0, bottom: 64, right: 0)
+        fic.collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 108, left: 0, bottom: 64, right: 0)
+        fic.translatesAutoresizingMaskIntoConstraints = false
+        return fic
     }()
     
-    let panel : UILabel = {
-        let label = UILabel()
-        label.text = "init"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+    let horizontalInterestFilterView: HorizontalInterestsFilterView = {
+        let hif = HorizontalInterestsFilterView()
+        hif.translatesAutoresizingMaskIntoConstraints =  false
+        return hif
     }()
     
-    let logoutBtn : UIButton = {
-        let button = UIButton(type: UIButton.ButtonType.system)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Logout", for: .normal)
-        button.addTarget(self, action: #selector(handleLogout), for: .touchUpInside)
-        return button
-    }()
-    
-    let editInterestBtn : UIButton = {
-        let button = UIButton(type: UIButton.ButtonType.system)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Edit Interests", for: .normal)
-        button.addTarget(self, action: #selector(handleEditInterests), for: .touchUpInside)
-        return button
-    }()
+    /*
+     variable to store top anchor constraint of filter view, we need the top anchor reference to animate the contraints while hiding/showing the view
+     */
+    var filterViewTopAnchorConstraint: NSLayoutConstraint?
     
     override func viewDidLoad() {
         view.backgroundColor = UIColor.white
-        view.addSubview(logoutBtn)
-         view.addSubview(editInterestBtn)
-        view.addSubview(panel)
-        view.addSubview(interestsPanel)
         
-        logoutBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        logoutBtn.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        view.addSubview(feedListView)
+        view.addSubview(horizontalInterestFilterView)
         
-        editInterestBtn.topAnchor.constraint(equalTo: logoutBtn.bottomAnchor, constant: 8).isActive = true
-        editInterestBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        addConstraintToFeedListView()
+        addConstraintToHorizontalFilterView()
         
+        populateInterestsFilter()
+        setDelegateToFilterView()
         
-        panel.centerXAnchor.constraint(equalTo: logoutBtn.centerXAnchor).isActive = true
-        panel.topAnchor.constraint(equalTo: editInterestBtn.bottomAnchor, constant: 8).isActive = true
-        
-        interestsPanel.topAnchor.constraint(equalTo: panel.bottomAnchor, constant: 8).isActive = true
-        interestsPanel.centerXAnchor.constraint(equalTo: panel.centerXAnchor).isActive = true
-        interestsPanel.widthAnchor.constraint(equalToConstant: 144).isActive = true
-        interestsPanel.heightAnchor.constraint(equalToConstant: 256).isActive = true
-        
-        updatePanel()
-        checkPreRequisite()
+        //start loading explore feeds by default
+        fetchExploreFeeds()
     }
     
+    /*
+     Call some method which requires view to be inflated before it is called.
+     */
+    override func viewDidAppear(_ animated: Bool) {
+        horizontalInterestFilterView.addBottomShadow()
+        
+        //inform feedlist view to refresh to show shimmer
+        feedListView.refresh()
+    }
 }

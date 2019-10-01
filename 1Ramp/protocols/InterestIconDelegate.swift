@@ -8,5 +8,5 @@
 
 import UIKit
 protocol InterestIconDelegate {
-    func onInterestTapped(selected: Bool, interestId: Int) -> ()
+    func onInterestTapped(selected: Bool, interestId: Int, interestTag: String) -> ()
 }
